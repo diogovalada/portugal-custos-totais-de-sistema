@@ -1,7 +1,7 @@
 # Metodologia de modelação, incerteza e validação
 
 > Estado editorial: working  
-> Última verificação factual: 2026-08-11  
+> Última verificação factual: 2026-08-12  
 > Âmbito: arquitetura do modelo, ferramentas, computação, adequação e validação  
 > Documento canónico para: como o estudo será calculado e testado  
 > Rever quando: mudar o stack, a resolução ou o desenho experimental
@@ -30,6 +30,16 @@ System LCOE é inadequado como métrica principal porque profile, balancing e gr
 
 O padrão LOLE continental português identificado era ≤1,46 h/ano; deve ser confirmado antes de cada release na [ERSE](https://www.erse.pt/eletricidade/seguranca-de-abastecimento/).
 
+## Tiers de fidelidade
+
+V0, V1 e V2 são rótulos de fidelidade, não uma ordem de execução concorrente com P1–P6:
+
+- **V0:** balanço nacional ou zonal agregado;
+- **V1:** sistema PT–ES com rede e principais nós/subestações representados;
+- **V2:** detalhe unitário/operacional com UC, reservas, hidrologia cronológica e adequação estocástica nos módulos em que os dados o suportem.
+
+Um módulo de estabilidade permanece separado e, sem dados e validação adicionais, é apenas screening — mesmo que outros módulos atinjam V2.
+
 ## Stack open source
 
 **ASSUMPTION A-STACK-001:** PyPSA + PyPSA-Eur, fixados a commits exatos, com HiGHS para o caminho reproduzível principal.
@@ -51,6 +61,8 @@ Alternativas para comparação:
 - POSY como referência NEA.
 
 Nenhum destes oferece sozinho adequação probabilística turnkey com LOLE/EENS/ELCC; será necessário um módulo próprio ou integração adicional.
+
+HiGHS continua a ser o caminho principal reproduzível de `A-STACK-001`. Um solver comercial pode ser usado em MILP/UC pesado, desde que o manifest registe produto e versão. Os casos principais devem ter reprodução no caminho aberto; se esta só for viável com scope reduzido, a diferença é declarada e a alegação de reprodutibilidade é reduzida em conformidade.
 
 ## Envelope computacional
 
@@ -122,10 +134,12 @@ Backcast:
 
 1. fixar capacidades, procura, combustíveis/CO2, interligações e outages históricos;
 2. correr despacho sem investimento;
-3. comparar energia, mix, reservatórios, curtailment, flows, emissões e duration curves;
+3. comparar energia, mix, reservatórios, flows, emissões, duration curves e o proxy de restrições/curtailment definido em [system-operations.md](data/system-operations.md);
 4. não exigir reprodução de preços sem bids, uplift e comportamento estratégico;
 5. fixar métricas antes de calibrar e guardar resultados pré/pós-calibração;
 6. preservar um holdout de anos para alegações principais.
+
+As métricas de backcast — identidade, resolução, agregação, denominador e tratamento de missing values — pertencem a esta metodologia; os valores-limite ficam em `A-BACKCAST-TOL-001`. `A-BACKCAST-YEARS` e essas tolerâncias são congelados em conjunto antes de qualquer calibração, e o holdout não pode ser usado para afinar nem parâmetros nem tolerâncias.
 
 Validação matemática/software:
 
@@ -134,6 +148,7 @@ Validação matemática/software:
 - regression tests e checksums;
 - primal/dual feasibility, gap, runtime, termination e warnings em cada run;
 - repetição dos headline runs com tolerâncias apertadas e, quando possível, outro solver/modelo;
+- reprodução independente avaliada por métrica com tolerâncias absolutas e/ou relativas fixadas em `A-REPRO-TOL-001` antes da tentativa;
 - declarar não-unicidade quando o custo é estável mas o mix varia.
 
 A intercomparação deve avançar por degraus: one-node, storage/hydro, PT–ES, UC, expansão, carbono e adequação. Um difference register atribuirá discrepâncias a dados, formulação, solver ou incerteza estrutural.

@@ -34,6 +34,9 @@ As fontes, pressupostos e lacunas têm identificadores estáveis nos ficheiros e
 ```text
 README.md
 PROJECT_STATUS.md
+LICENSE                    # licença de código, por decidir
+LICENSE-DOCS               # licença de documentação, por decidir
+CITATION.cff
 docs/
   execution-plan.md
   project-design.md
@@ -45,6 +48,9 @@ docs/
   data/
   archive/
 registers/
+environment/
+src/
+tests/
 data/
   raw/
   interim/
@@ -53,6 +59,8 @@ data/
 ```
 
 `registers/` contém metadados de investigação. `data/` fica reservado aos inputs do modelo, transformações e manifests. Dados sem licença de redistribuição não devem ser versionados; nesses casos serão publicados, quando permitido, o script de aquisição, a proveniência, o checksum e os derivados autorizados.
+
+Os nomes acima descrevem o estado-alvo; os ficheiros de licença e citação só serão criados depois da decisão de P1. Código, documentação e derivados de dados podem exigir licenças distintas, e cada dataset distribuído conservará também a sua proveniência e condições próprias.
 
 ## Âmbito de trabalho atual
 

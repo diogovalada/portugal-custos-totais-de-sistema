@@ -41,6 +41,7 @@ Não é defensável, sem evidência adicional:
 
 - anunciar “o verdadeiro custo total” de uma tecnologia;
 - atribuir todo o custo de backup ou rede a uma tecnologia sem contrafactual;
+- tratar “tecnologia X + armazenamento fornece 100%” como comparação neutra entre tecnologias, porque elimina deliberadamente complementaridades do portefólio;
 - inferir faturas diretamente do custo de recursos;
 - tratar uma solução do modelo como prova da política ótima;
 - alegar segurança dinâmica a partir de expansão linear;

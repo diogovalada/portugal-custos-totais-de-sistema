@@ -1,7 +1,7 @@
 # Cenários ibéricos
 
 > Estado editorial: working  
-> Última verificação factual: 2026-08-10  
+> Última verificação factual: 2026-08-12  
 > Âmbito: procura, política, infraestrutura, clima e narrativas PT–ES–FR  
 > Documento canónico para: definição dos cenários; não para parâmetros técnicos nucleares  
 > Rever quando: houver alteração legal, plano, eleição, autorização ou data de projeto
@@ -30,7 +30,7 @@ Factos nesta página são temporalmente instáveis. Cada release deve reverific�
 
 Fontes: [PNIEC](https://www.miteco.gob.es/content/dam/miteco/es/energia/files-1/pniec-2023-2030/PNIEC_2024_240924.pdf), [7.º plano de resíduos](https://www.enresa.es/documentos/ES_7-plan-general-residuos-radiactivos_.pdf) e [parecer do CSN sobre Almaraz](https://www.csn.es/-/informe-favorable-almaraz).
 
-Ramos: calendário legal; Almaraz até junho de 2030; extensão específica +5/+10 anos por central; e stress de baixa disponibilidade/avarias. Custos e parâmetros destas opções pertencem ao [dossier nuclear](nuclear.md).
+Ramos: calendário legal; Almaraz até junho de 2030; extensão específica +5/+10/+20 anos por central; e stress de baixa disponibilidade/avarias. Custos e parâmetros destas opções pertencem ao [dossier nuclear](nuclear.md).
 
 ## Procura e política
 
@@ -62,7 +62,7 @@ Portugal e Espanha mantêm exposição a LNG. É necessário combinar gás/CO2 e
 
 1. Policy 2030 com datas nucleares legais.
 2. Almaraz até 2030.
-3. Extensão espanhola +5/+10 anos.
+3. Extensão espanhola +5/+10/+20 anos.
 4. Slow delivery de renováveis, storage, redes e eletrificação.
 5. Electro-industrial boom.
 6. Seca ibérica severa e plurianual.
@@ -76,4 +76,3 @@ Compound stresses prioritários:
 - fast renewables + slow H2 demand + constrained exports.
 
 Clima, procura, vento, solar e hidro devem ser cronologicamente coerentes. “Normal”, “húmido” e “seco” não podem ser construídos combinando fatores de capacidade independentes.
-

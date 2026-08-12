@@ -15,6 +15,13 @@
 | D-DATA-001 | 2026-08-10 | Nunca classificar uma categoria inteira como “inacessível” sem distinguir o tipo de acesso | Usar a taxonomia aberto/público fragmentado/solicitável/reservado/inexistente |
 | D-DOCS-001 | 2026-08-11 | Substituir a memória monolítica por documentos canónicos temáticos e registos estruturados | O snapshot antigo passa a arquivo não canónico |
 | D-DOCS-002 | 2026-08-12 | Tornar `docs/execution-plan.md` a única fonte canónica da sequência de execução | `project-design.md` conserva o contrato científico e `PROJECT_STATUS.md` apenas o estado volátil |
+| D-PLAN-001 | 2026-08-12 | Adotar o conjunto mínimo de 13 correções convergidas na revisão externa Fable Max sem mudar a ordem P1–P6 ou os gates | Acrescentar a lacuna espanhola, pré-registo do backcast, regra de release intermédia, licenças de saída, dependências prospetivas e guardas de claims; `data-gaps.csv` passa a ser o único owner das prioridades e mantém `GAP-004` em `high` |
+
+## Revisão externa do plano
+
+| ID | Data | Revisor e configuração | Base | Resultado |
+|---|---|---|---|---|
+| REV-PLAN-001 | 2026-08-12 | `claude-fable-5`, esforço `max`, sessão `f0f29849-8ac5-4634-aadf-6eb08ad12330` | commit `1581ea3` e todos os documentos/registos ativos | 13 findings: 1 P1, 4 P2 e 8 P3; 13/13 remédios convergidos sem desacordo e incorporados por D-PLAN-001. A tentativa de re-review pós-edição foi recusada por quota; a regressão local confirmou schemas CSV, IDs, referências cruzadas, documentos canónicos e links locais. |
 
 ## Conclusões substituídas
 

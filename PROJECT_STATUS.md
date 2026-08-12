@@ -44,14 +44,17 @@ Nenhum destes domínios deve ser descrito em bloco como totalmente inacessível.
 - inclusão das ilhas no paper principal ou em estudos separados;
 - externalidades a monetizar;
 - segundo modelo para intercomparação.
+- licenças de saída distintas para código, documentação e derivados de dados, mais metadados de citação.
 
-Estas questões estão registadas em [`registers/assumptions.csv`](registers/assumptions.csv) e só passam a decisões quando entrarem no [registo de decisões](docs/decision-log.md).
+As escolhas científicas e quantitativas estão registadas em [`registers/assumptions.csv`](registers/assumptions.csv). A política de licenças é um entregável de P1; todas só passam a decisões quando entram no [registo de decisões](docs/decision-log.md).
 
 ## Riscos prioritários
 
+Resumo derivado de [`registers/data-gaps.csv`](registers/data-gaps.csv), snapshot de 2026-08-12; as classificações canónicas e efeitos na execução permanecem nesse registo.
+
 Críticos: parâmetros térmicos validados por unidade; curvas e restrições hidráulicas finas, incluindo Tâmega; custos finais de projetos privados; modelos dinâmicos; séries insulares sub-horárias.
 
-Importantes mas contornáveis: crosswalk unidade–nó; cadastro de baterias; custo marginal local de distribuição; série canónica de curtailment.
+Importantes mas contornáveis: crosswalk unidade–nó; cadastro de baterias; custo marginal local de distribuição; série canónica de curtailment; assimetria dos inputs espanhóis, sobretudo hidro e condições de reutilização.
 
 Já suficientes para uma primeira versão: grande frota via ENTSO-E/DGEG/REN; balanço e balancing via REN/SIME; hidrologia básica via SNIRH; rede/cargas agregadas via E-REDES; custos agregados das redes reguladas.
 

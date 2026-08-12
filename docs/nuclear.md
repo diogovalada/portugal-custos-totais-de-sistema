@@ -1,7 +1,7 @@
 # Dossier nuclear
 
 > Estado editorial: working  
-> Última verificação factual: 2026-08-10  
+> Última verificação factual: 2026-08-12  
 > Âmbito: opções espanholas e eventual projeto nuclear de potência em Portugal  
 > Documento canónico para: pressupostos, custos e condições específicas da tecnologia  
 > Rever quando: existir proposta portuguesa concreta ou alteração do calendário espanhol
@@ -42,7 +42,7 @@ As combinações ativadas em cada narrativa são definidas em [cenários ibéric
 
 Todos os valores abaixo são **ASSUMPTIONS** para harmonizar ao mesmo ano monetário, nunca factos portugueses:
 
-- extensão de vida: cerca de 450/700/950 USD2020/kW para 10/20 anos; extensões muito curtas exigem caso próprio;
+- extensão de vida: cerca de 450/700/950 USD2020/kW como âncoras internacionais para casos de 10/20 anos; a extensão +5 exige custos, obras e disponibilidade específicos da unidade e não pode ser obtida por interpolação proporcional silenciosa;
 - new build overnight: 3 500/7 000 USD2020/kW, com stress FOAK ≥8 000;
 - construção: 6–8 anos em repetição bem-sucedida, 9–12 de referência e 13–18 em FOAK/stress;
 - taxa real comum: 3%/7%/10% no ledger de recursos; WACC e contratos no ledger financeiro.
@@ -91,4 +91,3 @@ Antes de converter o cenário em estimativa de projeto seriam necessários, pelo
 - plano de emergência, segurança e salvaguardas.
 
 Até existir esse pacote, o output adequado é uma superfície de custo/prazo/desempenho e o limiar a partir do qual a opção entra no portefólio, não um número determinístico.
-

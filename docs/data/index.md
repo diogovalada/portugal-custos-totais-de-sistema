@@ -1,8 +1,8 @@
 # Índice e estado dos dados
 
 > Estado editorial: working  
-> Última verificação factual: 2026-08-10  
-> Âmbito: navegação, cobertura e prioridades  
+> Última verificação factual: 2026-08-12  
+> Âmbito: navegação, cobertura e encaminhamento das lacunas  
 > Documento canónico para: visão transversal das fontes e lacunas  
 > Rever quando: uma auditoria temática mudar de conclusão
 
@@ -18,20 +18,21 @@ Cada dado deve ser classificado como:
 
 “Não encontrado publicamente” não prova inexistência. Consulta pública não implica autorização para redistribuir no GitHub.
 
-## Matriz das lacunas originais
+## Matriz das lacunas auditadas
 
-| Lacuna | Estado | Prioridade | Documento |
-|---|---|---:|---|
-| Registo de unidades e nós | backbone ≥100 MW e várias fontes geográficas; nó físico incompleto | alta | [Ativos](generation-and-storage-assets.md) |
-| Rampas, mínimos, heat rates, arranques e avarias | priors abertos; valores portugueses validados não públicos | crítica | [Ativos](generation-and-storage-assets.md) |
-| Cascatas, afluências, rendimentos e água | operação básica muito pública; curvas/regras finas em falta | crítica | [Hidro](hydro.md) |
-| Reservas, ativações, redispatch e congestionamento | SIME substancial a 15 min; detalhe físico/segundos em falta | média-alta | [Operações](system-operations.md) |
-| Topologia e custos marginais da distribuição | datasets zonais ricos; grafo/custos nodais fechados | alta | [Rede](grid-and-stability.md) |
-| Registo de baterias MW/MWh | reconstruível parcialmente; sem cadastro nacional completo | alta | [Ativos](generation-and-storage-assets.md) |
-| Custos realizados | bons em redes reguladas; all-in privado fraco | crítica | [Custos](project-costs.md) |
-| Estabilidade, tensão e reativa | requisitos/planeamento públicos; operação/dinâmica fechada | crítica | [Rede](grid-and-stability.md) |
-| Projeto nuclear português | objeto ainda não existe | estrutural | [Nuclear](../nuclear.md) |
-| Operação dos Açores e Madeira | mensal/anual e qualidade; não sub-horário | crítica se incluído | [Ilhas](islands.md) |
+| Lacuna | Estado | Documento |
+|---|---|---|
+| Registo de unidades e nós | backbone ≥100 MW e várias fontes geográficas; nó físico incompleto | [Ativos](generation-and-storage-assets.md) |
+| Rampas, mínimos, heat rates, arranques e avarias | priors abertos; valores portugueses validados não públicos | [Ativos](generation-and-storage-assets.md) |
+| Cascatas, afluências, rendimentos e água | operação básica muito pública; curvas/regras finas em falta | [Hidro](hydro.md) |
+| Reservas, ativações, redispatch e congestionamento | SIME substancial a 15 min; detalhe físico/segundos em falta | [Operações](system-operations.md) |
+| Topologia e custos marginais da distribuição | datasets zonais ricos; grafo/custos nodais fechados | [Rede](grid-and-stability.md) |
+| Registo de baterias MW/MWh | reconstruível parcialmente; sem cadastro nacional completo | [Ativos](generation-and-storage-assets.md) |
+| Custos realizados | bons em redes reguladas; all-in privado fraco | [Custos](project-costs.md) |
+| Estabilidade, tensão e reativa | requisitos/planeamento públicos; operação/dinâmica fechada | [Rede](grid-and-stability.md) |
+| Projeto nuclear português | objeto ainda não existe | [Nuclear](../nuclear.md) |
+| Operação dos Açores e Madeira | mensal/anual e qualidade; não sub-horário | [Ilhas](islands.md) |
+| Inputs espanhóis endógenos | camada agregada forte; auditoria/licenças e detalhe hidro assimétricos | secção “Espanha” abaixo |
 
 O registo machine-readable encontra-se em [`registers/data-gaps.csv`](../../registers/data-gaps.csv).
 
@@ -51,6 +52,14 @@ O registo machine-readable encontra-se em [`registers/data-gaps.csv`](../../regi
 | Gás e carbono | MIBGAS, DGEG, EEX/ETS/EEA | spot/auction não equivale a delivered fuel cost |
 | Emissões | APA/UNFCCC/EEA ETS | lifecycle requer fonte e fronteira adicionais |
 
+## Espanha como camada endógena
+
+O modelo PT–ES não pode tratar Espanha como simples condição externa. O [ESIOS da REE](https://www.esios.ree.es/en/) publica carga, produção, mercados, intercâmbios, unidades estruturais e curtailment renovável nodal; a ENTSO-E acrescenta Transparency Platform, ERAA/PECD e dados europeus harmonizados. PyPSA-Eur fornece um ponto de partida reproduzível para rede, ativos e perfis.
+
+Estas fontes são substitutos aceites para um P3 agregado, mas não tornam a fidelidade simétrica. Em particular, a hidro espanhola será inicialmente representada com armazenamento/produção agregados ENTSO-E, afluências ERAA quando disponíveis e proxies meteorológicas PECD, não com uma reconstrução de cascatas ao nível SNIRH. Os termos de acesso e redistribuição do ESIOS e de cada pacote ENTSO-E têm de ser classificados antes do uso.
+
+`GAP-011` regista esta assimetria. Sem dados adicionais, o estudo pode tirar conclusões ibéricas agregadas e testar política espanhola, mas não alegar validação unitária, nodal ou de cascata com a mesma profundidade do lado português.
+
 ## Regras transversais
 
 - REN/ENTSO-E continentais não incluem Açores/Madeira; estatísticas nacionais podem incluí-los.
@@ -60,11 +69,6 @@ O registo machine-readable encontra-se em [`registers/data-gaps.csv`](../../regi
 - Para dados visíveis sem autorização de redistribuição, publicar apenas scripts/manifests/derivados permitidos.
 - Guardar a licença explícita de cada dataset; não inferir licença de uma página adjacente.
 
-## Prioridades
+## Prioridade e efeito na execução
 
-Críticas: parâmetros térmicos unitários; curvas/restrições hidráulicas e novas centrais Tâmega; outturn privado; modelos dinâmicos; operação insular sub-horária.
-
-Contornáveis: crosswalk unidade–nó; inventário de baterias; custos marginais locais da distribuição; curtailment canónico.
-
-Já adequadas para V0/V1: grande frota, balanço, balancing, hidrologia básica, carga/subestações e custos agregados de redes.
-
+A classificação de prioridade, a primeira fase afetada e a consequência de cada lacuna pertencem exclusivamente a [`registers/data-gaps.csv`](../../registers/data-gaps.csv). Este índice resume cobertura e encaminha para a evidência temática sem repetir essas classificações.

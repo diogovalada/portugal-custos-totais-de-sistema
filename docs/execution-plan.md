@@ -54,7 +54,8 @@ Fechar o contrato científico antes de produzir resultados politicamente interpr
 - ontologia de custos e schema dos três ledgers;
 - cenário/configuração-base sem resultados políticos;
 - ambiente bloqueado, estrutura de testes e fixture sintética mínima;
-- catálogo priorizado de inputs, licenças, manifests e pedidos administrativos;
+- catálogo priorizado de inputs portugueses e espanhóis, licenças, manifests e pedidos administrativos;
+- decisão separada sobre licenças de saída para código, documentação e derivados de dados, mais metadados de citação; as escolhas finais entram no decision log;
 - plano de pré-registo, revisão e conflitos de interesse.
 
 ### G1 — Critérios de aceitação
@@ -99,6 +100,7 @@ Produzir um MVP autónomo para 2–3 anos recentes, conciliando fluxos físicos,
 - transferências não são somadas ao custo de recursos;
 - revisões, timezone, DST, gross/net e HHV/LHV são preservados;
 - todos os dados versionados podem ser redistribuídos; os restantes têm scripts/manifests e instruções legais;
+- licenças de saída e metadados de citação cobrem separadamente código, documentação e derivados distribuídos;
 - uma reprodução limpa gera os outputs e testes esperados.
 
 ### Stop/go
@@ -115,8 +117,11 @@ Construir e validar, na fronteira adotada em P1, um modelo brownfield com capaci
 
 - G2 satisfeito;
 - `GAP-001`, `GAP-002`, `GAP-003`, `GAP-004`, `GAP-005` e `GAP-006` tratados ao nível exigido pela resolução escolhida;
+- `GAP-011` auditado e os substitutos espanhóis aceites ou o teto de fidelidade correspondente declarado;
 - `A-SPACE-001`, `A-TIME-001`, `A-STACK-001` e `A-DIST-001` adotados ou definidos como variantes estruturais;
-- anos de treino e holdout declarados antes da calibração.
+- `A-BACKCAST-YEARS` e `A-BACKCAST-TOL-001` congelados antes da calibração; os anos de holdout são excluídos da calibração e da afinação das tolerâncias.
+
+O backcast físico pode usar uma janela maior do que os 2–3 anos do ledger histórico de P2. Apenas os anos de sobreposição com `A-HISTORY-001` recebem reconciliação integral de custos; os restantes suportam validação física e operacional.
 
 ### Entregáveis
 
@@ -129,7 +134,7 @@ Construir e validar, na fronteira adotada em P1, um modelo brownfield com capaci
 
 ### G3 — Critérios de aceitação
 
-- balanço, produção, mix, flows, reservatórios, curtailment e emissões passam métricas pré-registadas;
+- balanço, produção, mix, flows, reservatórios, emissões e o proxy documentado de restrições/curtailment passam `A-BACKCAST-TOL-001`; enquanto faltar uma série canónica de curtailment, aplica-se apenas o proxy definido em [system-operations.md](data/system-operations.md);
 - a calibração não usa o holdout nem altera retrospetivamente os critérios;
 - não são exigidos preços reproduzidos sem bids, uplift ou comportamento estratégico;
 - correspondências inferidas, parâmetros sintéticos e proxies estão identificados;
@@ -151,6 +156,7 @@ Comparar portefólios brownfield nos anos-alvo adotados e respetivos contrafactu
 - G3 satisfeito;
 - narrativas de [scenarios-iberia.md](scenarios-iberia.md) materializadas em configurações versionadas;
 - `A-WEATHER-001`, `A-AGG-001`, `A-AGG-002`, `A-MGA-001` e pressupostos nucleares adotados como distribuições/sensibilidades;
+- `A-TECHCOST-001`, `A-FUELCO2-001` e `A-CLIMATE-DATA-001` resolvidos com versões, licenças e transformações documentadas;
 - `GAP-009` limita claims a superfícies paramétricas enquanto não existir projeto português.
 
 ### Entregáveis
@@ -212,6 +218,20 @@ Testar os portefólios congelados fora da otimização de expansão e quantifica
 
 Se a camada dinâmica não for acessível, excluir claims de segurança transitória em vez de os preencher com confiança falsa. Se um portefólio falhar adequação, regressar a P4 com a falha documentada e uma nova versão do candidato; não ajustar silenciosamente o resultado congelado.
 
+## Regra mínima para releases intermédias
+
+Um artefacto de P2 ou P4 só ativa esta regra quando recebe uma tag de release, DOI ou anúncio externo. Commits e outputs internos de trabalho não são releases.
+
+Antes de qualquer release intermédia:
+
+- o âmbito e as alegações ficam limitados ao gate já alcançado e passam, sem flexibilização, a política de alegações de [project-design.md](project-design.md);
+- uma reprodução limpa gera os outputs anunciados dentro de tolerâncias declaradas para esse artefacto;
+- método, dados/licenças e alegações recebem revisão proporcional ao que é tornado público;
+- a versão é imutável e citável, com commit, configuração, manifests e limitações identificados;
+- as licenças de saída de código, documentação e derivados de dados estão decididas e não contradizem os termos dos inputs.
+
+Esta verificação é uma versão limitada de P6, não uma autorização antecipada para claims que dependam de P5 ou G6.
+
 ## P6 — Replicação e publicação
 
 ### Objetivo
@@ -222,6 +242,7 @@ Submeter dados, código, método e alegações a reprodução e revisão indepen
 
 - G5 satisfeito para os claims incluídos;
 - protocolo, decision log, assumptions register, manifests e limitações atualizados;
+- `A-REPRO-TOL-001` congelado antes da reprodução independente;
 - licenças e permissões verificadas para todos os artefactos distribuídos.
 
 ### Entregáveis
@@ -235,7 +256,7 @@ Submeter dados, código, método e alegações a reprodução e revisão indepen
 
 ### G6 — Critérios de aceitação
 
-- terceiro independente reproduz os headline results dentro das tolerâncias declaradas;
+- terceiro independente reproduz os headline results dentro de `A-REPRO-TOL-001`;
 - findings materiais estão resolvidos ou publicados como desacordo explícito;
 - nenhuma fonte restrita, credencial ou dado confidencial é distribuído;
 - conclusões respeitam os limites definidos em [project-design.md](project-design.md);
