@@ -1,0 +1,32 @@
+assumption_id,category,parameter,value_or_distribution,unit,scenario,status,confidence,source_id,justification,review_trigger,needed_by_phase
+A-SCOPE-001,scope,main_system,"continental PT+ES; France limited; islands separate",text,all,working,medium,,Balances Iberian coupling with independent feasibility,Formal charter adoption,P1
+A-SCOPE-002,scope,sectors,electricity-only,text,phase_1,working,medium,,Keeps first paper auditable and tractable,Decision to add sector coupling,P1
+A-HORIZON-001,scope,study_horizon,TBD,year,all,open,not_assessed,,Required to distinguish investment and operating decisions,Charter adoption,P1
+A-TARGETYEARS-001,scope,target_years,"TBD; candidates 2030 and 2040",year,all,open,not_assessed,,Scenario files require explicit target years,Charter adoption,P1
+A-HISTORY-001,scope,historical_ledger_years,"TBD; 2-3 recent years",year,P2,open,not_assessed,,Ledger coverage must be frozen before acquisition,Source revision and charter adoption,P1
+A-CURRENCY-001,cost,real_monetary_base_year,TBD,year,all,open,not_assessed,,All cash flows and benchmarks need one real base year,Cost protocol adoption,P1
+A-DISCOUNT-001,cost,social_discount_rate,TBD,percent,resource_ledger,open,not_assessed,,Resource ledger needs a common real social rate,Cost protocol adoption,P1
+A-DEMAND-001,model,demand_formulation,"TBD; fixed exogenous or energy services",text,all,open,not_assessed,,Changes the objective and interpretation of welfare,Charter adoption,P1
+A-VOLL-001,reliability,voll_by_class,TBD,EUR/MWh,adequacy,open,not_assessed,,Needed to value unserved energy without hiding distributional choices,Reliability protocol adoption,P1
+A-EXTERNALITIES-001,cost,monetised_externalities,TBD,text,all,open,not_assessed,,Defines what enters the objective versus a satellite account,Cost protocol adoption,P1
+A-LEDGER-TOL-001,validation,ledger_reconciliation_tolerance,TBD,percent,P2,open,not_assessed,,G2 must be fixed before observing residuals,Protocol preregistration,P1
+A-MOROCCO-001,boundary,morocco_representation,"TBD; omit or limited boundary",text,all,open,not_assessed,,May be material to Iberian trade but should not expand scope silently,Charter adoption,P1
+A-SPACE-001,model,iberian_clusters,10-30,count,phase_1,working,medium,SRC-PYPSAEUR-SPATIAL,Useful network resolution within plausible compute,Resolution benchmark,P3
+A-TIME-001,model,dispatch_resolution,1,hour,central,working,high,,Chronology needed for storage and adequacy screening,Sub-hourly validation results,P3
+A-TIME-002,model,critical_period_resolution,"15 or 5",minute,validation,working,medium,,Needed for ramps reserves and scarcity,Operational data audit,P5
+A-WEATHER-001,uncertainty,initial_weather_years,3-5,count,screening,working,medium,,Affordable initial sensitivity before long ensemble,Compute benchmark,P4
+A-WEATHER-002,uncertainty,target_weather_history,30-40,year,scientific_target,working,medium,,Captures correlated Iberian variability and drought,Data and compute benchmark,P5
+A-STACK-001,software,core_model,"PyPSA + PyPSA-Eur + HiGHS",text,central,working,high,SRC-PYPSAEUR,Open European workflow and solver path,Prototype benchmark,P1
+A-RELIABILITY-001,adequacy,lole_target,1.46,hour/year,continental_PT,verify_before_use,medium,SRC-ERSE-ADEQUACY,Current standard identified in audit,Every release,P1
+A-ADEQUACY-001,adequacy,ci95_relative_half_width,10,percent,nonzero_LOLE_EENS,working,low,,Initial convergence target not universal standard,Statistical review,P5
+A-AGG-001,validation,temporal_aggregation_objective_error,1,percent,representative_periods,working,low,,Initial acceptance tolerance,Validation experiment,P4
+A-AGG-002,validation,temporal_aggregation_capacity_error,5,percent,major_technologies,working,low,,Initial acceptance tolerance,Validation experiment,P4
+A-NUC-LTO-001,nuclear,lto_capex,"450;700;950",USD2020/kW,extension_10_20y,working,low,SRC-NEA-COSTS,International scenario anchors not Portuguese data,Monetary harmonisation and unit-specific evidence,P4
+A-NUC-CAPEX-001,nuclear,new_build_overnight,"3500;7000;>=8000",USD2020/kW,"repeat;reference;FOAK_stress",working,low,SRC-NEA-COSTS,Parametric surface for undefined Portuguese project,Vendor or project definition,P4
+A-NUC-TIME-001,nuclear,construction_duration,"6-8;9-12;13-18",year,"repeat;reference;FOAK_stress",working,low,SRC-IAEA-MILESTONES,Scenario anchors with correlated delay risk,Project schedule evidence,P4
+A-NUC-RATE-001,nuclear,real_rate,"3;7;10",percent,"low;central;high",working,low,,Sensitivity; social rate not yet adopted,Cost framework decision,P4
+A-FRANCE-001,boundary,france_imports,limited_endogenous,text,all,working,medium,,Avoids infinite import proxy,Network calibration,P1
+A-DIST-001,distribution,representation,"ledger plus zonal/substation proxies",text,phase_1,working,medium,SRC-EREDES-NETWORK,Full electrical RND unavailable openly,Access response or module design,P1
+A-ISLANDS-001,scope,islands,separate_studies,text,phase_1,working,high,,Independent systems and weak sub-hourly data,Formal scope decision,P1
+A-MGA-001,uncertainty,near_optimal_slacks,"1;3;5",percent,portfolio_search,working,low,,Expose non-unique solutions,MGA prototype,P4
+A-MODEL2-001,validation,secondary_model,TBD,text,intercomparison,open,not_assessed,,Independent formulation may be needed for structural validation,Validation design,P5

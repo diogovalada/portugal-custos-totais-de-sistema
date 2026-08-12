@@ -1,0 +1,15 @@
+# Temporary cross-model handoffs and prompts
+.agents/tmp/
+
+# Credentials and local environments
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+
+# Python and notebook caches
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
