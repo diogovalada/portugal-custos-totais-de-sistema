@@ -1,7 +1,7 @@
 # Ativos de geração e armazenamento
 
 > Estado editorial: working  
-> Última verificação factual: 2026-08-11  
+> Última verificação factual: 2026-08-12
 > Âmbito: cadastro, localização, nós, parâmetros unitários e baterias  
 > Documento canónico para: inventário físico e técnico dos ativos  
 > Rever quando: houver novo export DGEG/REN/ENTSO-E ou atualização do PyPSA-Eur
@@ -67,9 +67,15 @@ Produção ENTSO-E por generation unit cobre ≥100 MW; eventos de indisponibili
 
 Lacunas críticas: heat-rate curve por carga, custo físico de arranque/no-load, rampas/mínimos validados, FOR/EFORd por unidade e histórico de deratings abaixo do limiar. ACER REMIT e OMIE são complementos; o plano integral de manutenção REN não foi encontrado aberto.
 
+### Espanha
+
+O ESIOS publica uma espinha dorsal de unidades físicas e de programação, com códigos UF/UP/EIC, potência, tecnologia, zona de regulação e ligações de mercado. O RAIPEE acrescenta registo administrativo, potência e localização territorial. A ENTSO-E cobre as grandes unidades.
+
+O [P.O.9](https://www.boe.es/buscar/doc.php?id=BOE-A-2019-18275) prova que a REE recebe heat rates/eficiências a várias cargas, arranques, mínimos, rampas, tempos, indisponibilidades, parâmetros de storage e subestação/tensão. A mesma base estrutural é confidencial. Assim, é defensável usar priors ERAA por tecnologia/vintage; não é defensável chamar-lhes parâmetros observados do grupo espanhol.
+
 ## Baterias
 
-**FACT:** não existe um cadastro público português autoritativo e completo combinando MW, MWh, nó, estado e datas.
+**FACT:** não existe um cadastro público PT–ES autoritativo e completo que combine standalone, co-localizado, behind-the-meter e bombagem com MW de carga/descarga, MWh bruto/útil, nó, estado e datas.
 
 Fontes parciais:
 
@@ -82,6 +88,34 @@ Fontes parciais:
 
 O armazenamento autónomo >1 MW requer licença, até 1 MW registo prévio, e o armazenamento associado integra o processo de produção. O indicador regulatório G5 pede MW, MWh, tecnologia, propriedade e autónomo/co-localizado. [Manual de reporte ERSE](https://www.erse.pt/media/bvzfelpi/manual-reporte.pdf).
 
-Snapshots a rever: JRC tinha 74 projetos portugueses, 56 eletroquímicos; ERSE reportava 7 MW/26 MWh na RNT no fim de 2024; REN reportava 19 MW instalados em julho de 2026. Diferenças podem refletir data, âmbito e definição. [Relatório ERSE](https://www.erse.pt/media/f4eh0fph/relat%C3%B3rio-art249-dl15_2022.pdf).
+Snapshots reconciliados:
 
-Campos a pedir: ID, estado, standalone/co-localizada/behind-the-meter, MW de carga/descarga, MWh bruto/útil, química, localização, nó/tensão, datas de licença/teste/operação e ativo associado.
+- ERSE: 7 MW/26 MWh na RNT no fim de 2024;
+- [REN Dados Técnicos 2025](https://www.ren.pt/media/2cbfm5p4/ren-dados-te-cnicos-2025.pdf): 19 MW de baterias e 3 585 MW de bombagem no fim de 2025, não “julho de 2026”;
+- a entrada de Casal da Cortiça em junho de 2025 documenta 12 MVA/24 MWh, produzindo um piso público de pelo menos 50 MWh no fim de 2025, sem resolver a identidade/nó dos 7 MW anteriores;
+- REE: indicador nacional revisto de baterias cresceu de 27,83 MW em janeiro de 2025 para 221,84 MW em julho de 2026;
+- MITECO 2024: 25,24 MW/56,1 MWh de grandes baterias; 3 331,4 MW de bombagem pura e 3 071,19 MW de bombagem mista.
+
+As diferenças não são necessariamente erros: refletem datas, geografia, revisão e denominadores. JRC é útil para discovery, não para totais oficiais; contém duplicados, estimativas e erros de PHS.
+
+Para bombagem, não usar um único campo `MW`: geração e bombagem podem divergir e o armazenamento pertence frequentemente a uma cascata/reservatório partilhado. Volume de água, energia bruta e energia elétrica útil não são intercambiáveis.
+
+Campos a pedir: ID, estado e respetiva base/data, standalone/co-localizada/behind-the-meter/PHS pura ou mista, MW AC de carga/descarga, MVA de ligação, MWh DC bruto e utilizável BOL/EOL, química, localização/precisão, nó/tensão, owner/operator, datas de acesso/licença/teste/operação, ativo associado, fonte por campo e histórico de revisão. Nunca converter desconhecido em zero.
+
+O inventário deve ter duas camadas: totais oficiais imutáveis por corte/perímetro e um crosswalk unitário versionado com confidence score por campo.
+
+## Ciclo de vida e repowering
+
+**FACT:** RMSA, PNEC, PNIEC, REE e ERAA publicam sobretudo trajetórias líquidas. Não fornecem um calendário coerente por unidade de reformas, mothballing, reativação, refurbishment e repowering.
+
+Um único `retirement_year` mistura relógios diferentes. O schema deve separar:
+
+- fim da vida de projeto;
+- expiração da licença/autorização/concessão;
+- calendário político ou protocolar;
+- anúncio do proprietário;
+- paragem efetiva e desmontagem;
+- retirada endógena no cenário;
+- mothball/restart, refurbishment e old-asset→repowered-asset.
+
+Isto é material para Tapada do Outeiro, CCGT espanhóis, nuclear espanhol, concessões hídricas e 10–12 GW de eólica espanhola que chegariam ao fim da vida operacional na década de 2020. Repowering preserva parte do terreno, título e ligação e não deve ser tratado como greenfield puro. `A-FLEET-CLOCK-001` define a taxonomia e `GAP-015` regista a ausência de histórico/calendário unitário completo.

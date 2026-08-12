@@ -1,7 +1,7 @@
 # Custos realizados de projetos
 
 > Estado editorial: working  
-> Última verificação factual: 2026-08-10  
+> Última verificação factual: 2026-08-12
 > Âmbito: outturn, contas reguladas e reconstrução de projetos privados  
 > Documento canónico para: evidência empírica de custos de ativos  
 > Rever quando: houver novas contas, auditorias ou informação de conclusão
@@ -9,6 +9,8 @@
 ## Conclusão
 
 **FACT:** existe informação real relevante para redes reguladas e alguns projetos públicos/financiados. Não existe um registo público completo do custo final all-in por ativo, sobretudo na geração privada.
+
+Um ledger histórico agregado é, ainda assim, viável para 2022–2024 se cada entrada distinguir `observed`, `regulated_outturn`, `cash_or_settlement`, `allowed_revenue`, `projected` e `modelled_estimate`. Rede regulada pode ser tratada com boa evidência; combustível/CO2 e custos operacionais privados exigem proxies e intervalos. O gate G2 não deve exigir que todos os custos privados sejam cash outturn observado.
 
 Fontes principais:
 
@@ -44,3 +46,14 @@ registo da central → NIPC/SPV → IES/contas → ativos em curso e adições
 
 Esta rota produz uma estimativa parcial e intervalos, não uma reconciliação auditada por ativo. Custos históricos devem ainda ser distinguidos de custos forward relevantes à decisão, conforme [contabilidade](../cost-accounting.md).
 
+## Custos forward
+
+A hierarquia provisória de `A-TECHCOST-001` é por linha, não por catálogo inteiro:
+
+1. outturn ou orçamento de projeto ibérico comparável;
+2. matriz europeia EC SWD(2026) 616 para 2030/2040/2050;
+3. TYNDP para planeamento/interligações;
+4. `technology-data` v0.15.0 com overrides explícitos;
+5. DEA, IRENA, IEA, JRC e literatura para detalhe e bounds.
+
+Não misturar overnight com all-in/financiado, €/kW com €/kWh, potência input com output ou custos que incluem/excluem ligação. `technology-data` contém alternativas incompatíveis para baterias, PHS e H2; nuclear é referência norte-americana e offshore exclui ligação. Bounds de catálogos são narrativas tecnológicas, não P10/P50/P90 automáticos.

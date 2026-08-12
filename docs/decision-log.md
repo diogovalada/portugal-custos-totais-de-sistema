@@ -37,4 +37,4 @@ Não voltar a afirmar sem qualificação:
 
 ## Questões que ainda não são decisões
 
-Fronteira, ano-base, horizonte, sector coupling, granularidade, procura endógena, taxa social, VOLL, weather years, distribuição, ilhas, externalidades e segundo modelo continuam em aberto. Os defaults correspondentes pertencem a [`registers/assumptions.csv`](../registers/assumptions.csv), não a esta tabela.
+Fronteira, ano-base, horizonte, sector coupling, granularidade, procura endógena, taxa social, harmonização/uso do VOLL, weather years, distribuição, ilhas, externalidades e critérios dos pilotos GenX/Antares continuam em aberto. Os defaults correspondentes pertencem a [`registers/assumptions.csv`](../registers/assumptions.csv), não a esta tabela.

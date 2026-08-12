@@ -1,7 +1,7 @@
 # Rede, distribuição e estabilidade
 
 > Estado editorial: working  
-> Última verificação factual: 2026-08-10  
+> Última verificação factual: 2026-08-12
 > Âmbito: topologia, custos de reforço, tensão, reativa, inércia e modelos dinâmicos  
 > Documento canónico para: fidelidade física da rede e respetivas lacunas  
 > Rever quando: houver novo PDIRT/PDIRD, licença E-REDES ou acesso CGMES
@@ -37,7 +37,38 @@ Lacunas efetivas:
 
 É defensável construir um modelo zonal ou por subestação. Não é defensável afirmar que reproduz a RND real.
 
-## Transmissão, tensão e reativa
+## Transmissão PT–ES–FR
+
+**FACT:** não existe um snapshot aberto, versionado e adequadamente licenciado que combine topologia elétrica, R/X/B, ratings, taps, estados, outages, injeções nodais e correspondência projeto–custo realizado para a rede PT–ES–FR.
+
+É necessário distinguir quatro objetos:
+
+| Camada | Disponibilidade e uso |
+|---|---|
+| Topologia geográfica | Mapas TSO, OSM e PyPSA-Eur; útil para geometria e inventário aproximados |
+| Modelo DC de planeamento | Reproduzível com PyPSA-Eur/OSM e parâmetros sintéticos; adequado a screening |
+| CGMES/IGM/CGM | O standard CGMES é público, mas os modelos reais são trocados em infraestrutura segura ou por acesso institucional |
+| Estado operacional | Switching, taps, shunts, fluxos P/Q, estimativa de estado e limites aplicáveis a uma hora não são open data |
+
+Fontes públicas relevantes:
+
+- [REN Data Hub — rede elétrica](https://datahub.ren.pt/pt/redes/rede-eletrica/) e PDIRT;
+- REE: nós/capacidade de acesso, correntes de curto-circuito e parâmetros normalizados de linhas típicas;
+- RTE/CRE: inventários GIS históricos e custos agregados;
+- [TYNDP](https://www.entsoe.eu/outlooks/tyndp/2024/) e Transparency Platform: NTC/ATC, fluxos, grandes outages, redispatch e projetos;
+- [PyPSA-Eur](https://github.com/PyPSA/pypsa-eur) e OSM: baseline aberta, mas com tipos de linha, transformadores, ratings e cargas parcialmente inferidos.
+
+PT–ES e ES–FR continuam a ser representadas publicamente sobretudo por CNTC/NTC coordenados, não por um domínio flow-based operacional aberto. NTC não é o rating de uma linha e os 4,2/3,5 GW PT–ES inaugurados em 2026 não são limites comerciais horários garantidos.
+
+O P3 pode comparar:
+
+1. transporte zonal CNTC;
+2. DC-KVL sintético com 10–30 clusters;
+3. topologias e deratings conservadores.
+
+Essa escada permite estudar congestão estrutural e valor agregado de reforços. Não permite alegar reprodução da RNT/RdT/RPT, causalidade por ramo, N-1 oficial ou congestão operacional nodal. `GAP-013` separa agora esta lacuna de transmissão das lacunas de distribuição e estabilidade.
+
+## Tensão, reativa e estabilidade
 
 **FACT:** existe uma camada pública útil de requisitos, qualidade, planeamento e custos:
 
@@ -63,4 +94,3 @@ Existem ainda concursos e preços públicos de black start. O PDIRT propunha um 
 REN recebe muitos destes parâmetros; os modelos continentais ENTSO-E acessíveis por pedido/NDA são anonimizados ou simplificados e não substituem o modelo ibérico de tensão, transitórios, proteção e EMT.
 
 Modelos genéricos, correntes do Anexo 16, envelopes RfG e despacho público podem alimentar proxies sintéticos. Os resultados devem ser chamados screening de plausibilidade, nunca validação TSO.
-

@@ -20,6 +20,8 @@ O estudo comparará o custo incremental ou contrafactual de fornecer o mesmo ser
 
 Os três ledgers podem ser apresentados lado a lado, mas não somados sem uma regra explícita.
 
+O ledger histórico de P2 usa 2022–2024 como default de trabalho e classifica cada linha como `observed`, `regulated_outturn`, `cash_or_settlement`, `allowed_revenue`, `projected` ou `modelled_estimate`. `physical_year`, `accrual_year`, `tariff_year` e `cash_year` são campos distintos. Um fecho agregado é viável; um ledger integral de custos privados efetivamente realizados por central não é publicamente observável.
+
 ## Formulação económica mínima
 
 Para procura ou serviço fixo:
@@ -81,6 +83,30 @@ Não somar simultaneamente:
 
 Cada linha do ledger deve ser classificada como quantidade endógena × custo unitário exógeno, custo unitário endógeno, valor sombra, custo fixo exógeno ou efeito omitido/não monetizado. Valores sombra são resultados e não parcelas adicionais da função objetivo.
 
+## Protocolo de externalidades
+
+O core recomendado separa monetização defensável de inventários físicos:
+
+- GHG lifecycle: inventário físico completo por fase; monetização em conta identificada e reconciliada com cap/ETS;
+- poluição atmosférica: emissões operacionais e fatores de saúde EEA específicos do país/emissor; alternativas VSL/VOLY não se somam;
+- adequação: `EENS × VOLL` por zona, não um adder autónomo de “segurança energética”;
+- água: withdrawal, return, consumption, carga térmica, bacia e mês; sem preço genérico EUR/m³;
+- biodiversidade/solo: constraints legais e ledger espacial físico; sem EUR/MWh genérico;
+- acidentes: conta satélite separando acidentes severos, ocupacionais e saúde crónica;
+- resíduos/desmantelamento: custo técnico ou levy/EPR, nunca ambos; dano residual apenas se demonstrado;
+- segurança geopolítica, macroeconomia e distribuição: stress tests ou contas satélite, não parcela cumulativa automática.
+
+Cada linha de externalidade regista quantidade física, fronteira temporal/espacial, direct/upstream, internalizada/residual, unidade/ano da valorização, destinatários, confiança e overlap keys. Os headlines devem mostrar custo de recursos e custo de recursos + externalidades admitidas, mantendo visíveis os efeitos não monetizados.
+
+Regras adicionais contra dupla contagem:
+
+- não somar PM2.5 e PM10 alternativos, nem VSL e VOLY;
+- não somar fatores NOx/SO2 com produtos secundários já incluídos no mesmo fator de dano;
+- não somar mitigação incorporada no CAPEX ao dano bruto pré-mitigação;
+- não somar tarifa/canon da água ao dano ambiental;
+- não somar AWARE, área, habitat-ha e PDF como métricas monetárias independentes;
+- não somar levy nuclear, fundo ENRESA e custo técnico completo do mesmo backend.
+
 ## Outputs mínimos
 
 - NPV, custo anual equivalente e diferença para o contrafactual;
@@ -94,4 +120,3 @@ Cada linha do ledger deve ser classificada como quantidade endógena × custo un
 - reservas, ativações e shortfalls;
 - LOLE, EENS, eventos extremos e intervalos de confiança;
 - emissões diretas/lifecycle e impactos não monetizados.
-

@@ -15,8 +15,9 @@ O projeto encontra-se na fase de desenho metodológico e auditoria de dados. Ain
 - [Dossier nuclear](docs/nuclear.md): opções nucleares espanholas e hipóteses para um eventual projeto português.
 - [Índice de dados](docs/data/index.md): estado das fontes, lacunas e ligações para as auditorias temáticas.
 - [Registo de decisões](docs/decision-log.md): decisões adotadas e alterações de posição.
+- [Auditoria de investigação de 2026-08-12](docs/archive/research-audit-2026-08-12.md): síntese da ronda de 100 agentes, incertezas reduzidas, lacunas duras e efeito do limite de concorrência.
 
-O documento monolítico anterior foi preservado como [snapshot histórico](docs/archive/project-memory-2026-08-10.md). Não deve ser atualizado nem citado como posição corrente quando exista um documento canónico mais recente.
+O documento monolítico anterior foi preservado como [snapshot histórico](docs/archive/project-memory-2026-08-10.md). Não deve ser atualizado nem citado como posição corrente quando exista um documento canónico mais recente. As auditorias datadas preservam a evidência de cada ronda de investigação; as conclusões correntes continuam a pertencer aos documentos canónicos e aos registos.
 
 ## Convenções de conhecimento
 

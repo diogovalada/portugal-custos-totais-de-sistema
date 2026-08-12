@@ -29,7 +29,7 @@ Logo, o estudo só pode produzir cenários probabilísticos, limiares de break-e
 
 Não criar uma única tecnologia `nuclear`. Separar:
 
-1. unidades espanholas até às datas legais;
+1. unidades espanholas até ao limite das autorizações vigentes;
 2. extensões curtas específicas, como Almaraz;
 3. extensões +5/+10/+20 anos, com obras e autorização por unidade;
 4. grande reator FOAK num país newcomer;
@@ -37,6 +37,8 @@ Não criar uma única tecnologia `nuclear`. Separar:
 6. importação nuclear francesa limitada por disponibilidade e rede.
 
 As combinações ativadas em cada narrativa são definidas em [cenários ibéricos](scenarios-iberia.md).
+
+**FACT:** autorização vigente, calendário político/protocolar, vida de projeto e data efetiva de paragem não são o mesmo relógio. No corte de 2026-08-12, o pedido dos titulares de Almaraz fixava 08-06-2030 para os dois grupos e já tinha parecer favorável condicionado do CSN, mas ainda não uma ordem ministerial final. Ascó II, Vandellós II e Trillo também precisariam de atos adicionais para alcançar as datas do protocolo/7.º PGRR. O modelo deve, por isso, guardar por grupo a fonte e o estado de cada data, em vez de transformar o calendário político numa retirada técnica automática. Ver o [quadro unitário e respetivas fontes](scenarios-iberia.md#política-nuclear-espanhola).
 
 ## Intervalos iniciais
 

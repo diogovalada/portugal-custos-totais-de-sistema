@@ -16,9 +16,11 @@ System LCOE é inadequado como métrica principal porque profile, balancing e gr
 
 > whole-system resource cost and social cost under common reliability and emissions constraints
 
+Cada comparação terá uma ficha de contrafactual congelada: serviço/denominador, fronteira, trajetória brownfield, procura, fiabilidade, emissões, rede, clima, preços de recursos e efeitos incluídos. Custos de integração não são componentes universalmente aditivos nem atribuíveis a uma tecnologia sem esse benchmark.
+
 ## Arquitetura
 
-1. Modelo brownfield de expansão e despacho para Portugal e Espanha.
+1. Modelo brownfield multi-período de expansão e despacho para Portugal e Espanha, com vintages, vida, reforma/refurbishment/repowering, lead/build time, emissões cumulativas, residual value e end effects.
 2. França como nó limitado/endógeno ou condição de fronteira sujeita a stress, nunca como importação infinita; Marrocos se material.
 3. Pelo menos PT, ES e FR, preferencialmente 10–30 clusters ibéricos ou nós principais com DC load flow/transport documentado.
 4. Cronologia horária completa no caso elétrico principal. Períodos representativos apenas se preservarem armazenamento sazonal, incluírem semanas críticas e forem validados em 8 760/8 784 horas.
@@ -28,7 +30,7 @@ System LCOE é inadequado como métrica principal porque profile, balancing e gr
 8. Rede e segurança em módulos: perdas, congestionamento, redispatch, N-1 e screens de reativa, inércia e tensão. Estabilidade dinâmica nacional não é uma alegação do núcleo aberto.
 9. Externalidades e incidência financeira em satellite accounts ligados ao [ledger de custos](cost-accounting.md).
 
-O padrão LOLE continental português identificado era ≤1,46 h/ano; deve ser confirmado antes de cada release na [ERSE](https://www.erse.pt/eletricidade/seguranca-de-abastecimento/).
+Os padrões oficiais são zonais: LOLE ≤1,46 h/ano em Portugal continental e ≤1,5 h/ano em Espanha. Aplicam-se no mesmo Monte Carlo, mas como constraints separadas; não existe uma média ibérica defensável. Os VOLL oficiais antes da harmonização monetária são 12 433 EUR/MWh em Portugal e 22 879 EUR/MWh em Espanha. Fontes: [ERSE](https://www.erse.pt/eletricidade/seguranca-de-abastecimento/), [relatório VOLL/CONE](https://www.erse.pt/media/knfirrvo/relatorio-final-erse-voll-cone-dezembro-2025.pdf) e [resolução espanhola](https://www.boe.es/buscar/doc.php?id=BOE-A-2025-14438).
 
 ## Tiers de fidelidade
 
@@ -50,17 +52,17 @@ Fontes: [PyPSA](https://github.com/PyPSA/PyPSA), [PyPSA-Eur](https://github.com/
 
 O PyPSA é o framework, não um cadastro português. O PyPSA-Eur usa `powerplantmatching` para coordenadas de muitas centrais convencionais e atribui-as espacialmente a buses/regiões. Estas coordenadas e o bus inferido são úteis para modelação, mas não equivalem ao crosswalk oficial grupo–subestação–terminal. O workflow [documenta a atribuição espacial e nearest-neighbour](https://github.com/PyPSA/pypsa-eur/blob/master/scripts/build_powerplants.py).
 
-Alternativas para comparação:
+### Suite de validação
 
-- GenX, forte em planeamento elétrico/UC/reservas, mas sem pipeline ibérico equivalente;
-- Calliope/Euro-Calliope, legível e multi-carrier, com representação de rede mais agregada;
-- SpineOpt, forte em estocástico/multi-energia, mas mais complexo;
-- Switch, sólido mas com tooling de dados sobretudo norte-americano;
-- Temoa/OSeMOSYS para trajetórias coarse;
-- Dispa-SET para validação operacional;
-- POSY como referência NEA.
+`A-MODEL2-001` deixa de significar um único segundo modelo integral. A arquitetura de trabalho tem três papéis:
 
-Nenhum destes oferece sozinho adequação probabilística turnkey com LOLE/EENS/ELCC; será necessário um módulo próprio ou integração adicional.
+1. **reference implementation Julia/JuMP + HiGHS**, com SCIP em fixtures MILP reduzidos, para balanços, storage/hidro simples, linha congestionada, carbono, expansão contínua e UC pequeno;
+2. **GenX**, sujeito a piloto P3, para intercomparar expansão, UC, reservas, storage e carbono em 1–3 zonas;
+3. **Antares-Simulator**, sujeito a piloto, para Monte Carlo sequencial de adequação de portefólios fixos PT–ES(+FR/MA).
+
+Todos consomem tabelas canónicas neutras através de adaptadores independentes. Nenhum lê objetos, NetCDF ou matrizes internas produzidas pelo PyPSA. O conversor PyPSA→Antares pode testar tradução, mas não conta como validação estrutural principal.
+
+Se só houver recursos para um pacote externo, Antares é o mais complementar; se a pergunta prioritária for o mix de capacidade, GenX tem precedência. POSY2 só volta à shortlist se a NEA disponibilizar código, licença e caso reproduzível. Dispa-SET fica condicionado por GAMS; SpineOpt é reserva estratégica; Calliope/Temoa/OSeMOSYS servem apenas cross-checks mais agregados.
 
 HiGHS continua a ser o caminho principal reproduzível de `A-STACK-001`. Um solver comercial pode ser usado em MILP/UC pesado, desde que o manifest registe produto e versão. Os casos principais devem ter reprodução no caminho aberto; se esta só for viável com scope reduzido, a diferença é declarada e a alegação de reprodutibilidade é reduzida em conformidade.
 
@@ -71,13 +73,15 @@ Ordens de grandeza, não garantias:
 | Modelo | Recursos plausíveis com solver aberto |
 |---|---|
 | PT+ES, 2–5 zonas, LP, 8 760 h | 8–16 GB, 4–8 cores; minutos a cerca de 1 h |
-| Ibéria, 15–30 zonas, LP com hidro/storage | 32–64 GB, 8–16 cores; dezenas de minutos a horas |
+| Ibéria, 10–30 zonas, LP com hidro/storage | 64 GB seguro; 128 GB prudente nas primeiras execuções; minutos a horas com solver forte e potencialmente 5–24+ h no caminho aberto |
 | Sector-coupled a 3 h | 64–128 GB, 16–32 cores; horas/overnight |
 | Sector-coupled horário | Pode exigir 128–256 GB e runs longos |
 | UC anual plant-level, 100–300 unidades | 64–256 GB; horas a dias |
 | Cinco anos meteorológicos acoplados | Frequentemente 128–256 GB; runs independentes podem ser distribuídos |
 
-Um portátil basta para V0 e screening zonal. Para o principal, RAM, CPU, solver e formulação dominam; GPU não é a prioridade. Rolling horizon para UC e runs independentes por weather year controlam o custo. A [documentação de resolução espacial do PyPSA-Eur](https://pypsa-eur.readthedocs.io/en/latest/spatial_resolution/) deve ser usada para benchmarking.
+Um portátil basta para V0 e screening zonal. Para o principal, RAM, CPU, solver, scaling numérico e formulação dominam; GPU não é a prioridade. O [Open Energy Benchmark](https://openenergybenchmark.org/blog/hipo_study) confirma milhões de variáveis a 10–30 nós/8 760 h e mostra que HiGHS/HiPO pode tornar o caminho aberto viável, mas com runtime e robustez não monotónicos. Mais de cerca de oito threads por solve HiGHS raramente compensa; é preferível paralelizar weather years/portefólios.
+
+UC anual exato é o risco maior. O baseline é UC horário em janelas 48/96/168 h com overlap e estados/valores terminais validados; 15/5 minutos significam primeiro commitment congelado e redispatch/reservas nos períodos críticos. Adequação usa simulador rápido para todas as histórias e UC/ED detalhado apenas numa amostra estratificada dos eventos críticos.
 
 Configuração inicial: 10–30 clusters, 8 760 horas, investimento contínuo, despacho linear, reservatórios/bombagem/baterias explícitos, 3–5 weather years separados e UC em stress weeks/rolling horizon.
 
@@ -104,12 +108,15 @@ Desenho recomendado:
 
 ## Clima e seca
 
-- objetivo científico de 30–40 anos coerentes PT–ES–FR, com ERA5/PECD e bias correction;
+- [PECD v4.2](https://cds.climate.copernicus.eu/datasets/sis-energy-pecd?tab=overview), CC BY 4.0, como backbone futuro; ERA5/ERA5-Land como baseline físico histórico e observações nacionais para calibração;
+- objetivo científico de pelo menos 30–40 anos históricos coerentes PT–ES–FR e todas as cadeias futuras retidas, não apenas 3–5 anos de screening;
 - procura, vento, PV, hidro e derating devem usar o mesmo ano/calendário;
 - preservar sequências plurianuais e carry-over de reservatórios;
 - perfect foresight funciona como lower bound, com sensibilidade rolling/limited foresight;
 - separar reanalysis histórico de climate-change ensembles;
 - validar períodos representativos contra cronologia integral.
+
+O PECD hidro é nacional/semanal e não substitui um modelo por bacia/cascata. Uma realização por GCM e seis GCM não estimam sozinhos caudas centenárias. Bias correction, weather-to-power, inflows por bacia, usos futuros da água e eventos compostos permanecem ensemble uncertainty, não erro a “corrigir” uma vez.
 
 Tolerâncias iniciais para agregação temporal: erro do objetivo <1%, capacidades principais <5%, nenhuma inversão da conclusão política e adequação estatisticamente consistente. São pressupostos a rever, não standards universais.
 

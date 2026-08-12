@@ -44,7 +44,7 @@ Fechar o contrato científico antes de produzir resultados politicamente interpr
 
 ### Dependências
 
-- resolver ou adotar os pressupostos marcados `needed_by_phase=P1`, incluindo `A-SCOPE-001`, `A-SCOPE-002`, `A-FRANCE-001`, `A-ISLANDS-001`, `A-STACK-001` e os campos ainda `TBD`;
+- resolver ou adotar os pressupostos marcados `needed_by_phase=P1`, incluindo `A-SCOPE-001`, `A-SCOPE-002`, `A-FRANCE-001`, `A-ISLANDS-001`, `A-STACK-001`, `A-DEMAND-BOUNDARY-001`, `A-COUNTERFACTUAL-001`, `A-EMISSIONS-001` e os campos ainda `TBD`;
 - preservar `D-COST-001`, `D-MOD-001`, `D-GOV-001` e `D-DATA-001`;
 - medir as lacunas antes de fazer pedidos administrativos amplos.
 
@@ -80,7 +80,7 @@ Produzir um MVP autónomo para 2–3 anos recentes, conciliando fluxos físicos,
 ### Dependências
 
 - G1 satisfeito;
-- `GAP-004`, `GAP-006` e `GAP-007` medidos e tratados segundo o respetivo `effect_on_execution`;
+- `GAP-004`, `GAP-006`, `GAP-007`, `GAP-012` e `GAP-015` medidos e tratados segundo o respetivo `effect_on_execution`;
 - inventário inicial de unidades e correspondências de `GAP-001` suficiente para explicar a cobertura;
 - ano-base monetário e regras de reconciliação adotados.
 
@@ -116,7 +116,7 @@ Construir e validar, na fronteira adotada em P1, um modelo brownfield com capaci
 ### Dependências
 
 - G2 satisfeito;
-- `GAP-001`, `GAP-002`, `GAP-003`, `GAP-004`, `GAP-005` e `GAP-006` tratados ao nível exigido pela resolução escolhida;
+- `GAP-001`, `GAP-002`, `GAP-003`, `GAP-004`, `GAP-005`, `GAP-006`, `GAP-013` e `GAP-017` tratados ao nível exigido pela resolução escolhida;
 - `GAP-011` auditado e os substitutos espanhóis aceites ou o teto de fidelidade correspondente declarado;
 - `A-SPACE-001`, `A-TIME-001`, `A-STACK-001` e `A-DIST-001` adotados ou definidos como variantes estruturais;
 - `A-BACKCAST-YEARS` e `A-BACKCAST-TOL-001` congelados antes da calibração; os anos de holdout são excluídos da calibração e da afinação das tolerâncias.
@@ -158,6 +158,7 @@ Comparar portefólios brownfield nos anos-alvo adotados e respetivos contrafactu
 - `A-WEATHER-001`, `A-AGG-001`, `A-AGG-002`, `A-MGA-001` e pressupostos nucleares adotados como distribuições/sensibilidades;
 - `A-TECHCOST-001`, `A-FUELCO2-001` e `A-CLIMATE-DATA-001` resolvidos com versões, licenças e transformações documentadas;
 - `GAP-009` limita claims a superfícies paramétricas enquanto não existir projeto português.
+- `GAP-014`, `GAP-016` e `GAP-018` materializados em narrativas, constraints e ensembles explícitos, sem transformar metas ou potenciais técnicos em previsões.
 
 ### Entregáveis
 
@@ -191,7 +192,7 @@ Testar os portefólios congelados fora da otimização de expansão e quantifica
 ### Dependências
 
 - G4 satisfeito e shortlist imutável;
-- `A-RELIABILITY-001`, `A-ADEQUACY-001`, `A-TIME-002` e `A-WEATHER-002` confirmados;
+- `A-RELIABILITY-001`, `A-ADEQUACY-001`, `A-TIME-002`, `A-WEATHER-002` e `A-MODEL2-001` confirmados pelos pilotos aplicáveis;
 - `GAP-002` e `GAP-003` tratados probabilisticamente;
 - `GAP-005` e `GAP-008` definem o limite entre análise de rede, screening e validação dinâmica;
 - `GAP-010` só entra se as ilhas forem formalmente incluídas.
@@ -288,7 +289,7 @@ Estas são ordens de grandeza de planeamento, não calendário ou compromisso:
 | Resultado | Esforço plausível |
 |---|---|
 | P1 + P2, incluindo ledger histórico | cerca de 8–12 semanas full-time para um MVP estreito |
-| P1–P4, preprint elétrico ibérico | cerca de 9–15 meses full-time |
+| P1–P4, preprint elétrico ibérico | cerca de 9–15 meses full-time; prolongar se a intercomparação GenX entrar no caminho crítico |
 | P5 com adequação e módulos profundos | esforço adicional material e revisão especializada |
 | Extensão totalmente sector-coupled | aproximadamente mais 18–36 meses; fora do núcleo inicial |
 | Estudo economy-wide definitivo | não é projeto de uma só pessoa |

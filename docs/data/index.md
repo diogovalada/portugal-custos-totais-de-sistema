@@ -32,7 +32,11 @@ Cada dado deve ser classificado como:
 | Estabilidade, tensão e reativa | requisitos/planeamento públicos; operação/dinâmica fechada | [Rede](grid-and-stability.md) |
 | Projeto nuclear português | objeto ainda não existe | [Nuclear](../nuclear.md) |
 | Operação dos Açores e Madeira | mensal/anual e qualidade; não sub-horário | [Ilhas](islands.md) |
-| Inputs espanhóis endógenos | camada agregada forte; auditoria/licenças e detalhe hidro assimétricos | secção “Espanha” abaixo |
+| Inputs espanhóis endógenos | camada zonal forte e hidro por reservatório; parâmetros unitários, nó elétrico e licenças continuam assimétricos | secção “Espanha” abaixo |
+| Transmissão PT–ES–FR | baseline geográfica/DC sintética possível; modelo operacional TSO restrito | [Rede](grid-and-stability.md) |
+| Procura e behind-the-meter | totais anuais fortes; denominadores e perfis futuros não reconciliados | [Cenários](../scenarios-iberia.md) |
+| Renováveis realizáveis | potenciais técnicos fortes; pipeline, build rates e custo-potencial incompletos | [Cenários](../scenarios-iberia.md) |
+| Frota e repowering | capacidade líquida disponível; relógios e fluxos brutos por ativo incompletos | [Ativos](generation-and-storage-assets.md) |
 
 O registo machine-readable encontra-se em [`registers/data-gaps.csv`](../../registers/data-gaps.csv).
 
@@ -47,18 +51,18 @@ O registo machine-readable encontra-se em [`registers/data-gaps.csv`](../../regi
 | Estatísticas e licenças | DGEG | páginas e datasets com regimes de reutilização diferentes |
 | Regulação e custos | ERSE | PDF/XLS; proveito permitido não é cash cost contemporâneo |
 | Hidrologia | APA/SNIRH | séries ricas, interface antiga e licença pouco clara |
-| Clima | ERA5/ERA5-Land, PECD, IPMA | ERA5 para base; IPMA sobretudo calibração |
+| Clima | PECD v4.2, ERA5/ERA5-Land, IPMA/AEMET/CEDEX | PECD futuro; reanalysis histórico; observações para validação |
 | Demografia/macroeconomia | Eurostat e INE | arquivar pulls porque as séries são revistas |
 | Gás e carbono | MIBGAS, DGEG, EEX/ETS/EEA | spot/auction não equivale a delivered fuel cost |
 | Emissões | APA/UNFCCC/EEA ETS | lifecycle requer fonte e fronteira adicionais |
 
 ## Espanha como camada endógena
 
-O modelo PT–ES não pode tratar Espanha como simples condição externa. O [ESIOS da REE](https://www.esios.ree.es/en/) publica carga, produção, mercados, intercâmbios, unidades estruturais e curtailment renovável nodal; a ENTSO-E acrescenta Transparency Platform, ERAA/PECD e dados europeus harmonizados. PyPSA-Eur fornece um ponto de partida reproduzível para rede, ativos e perfis.
+O modelo PT–ES não pode tratar Espanha como simples condição externa. O [ESIOS da REE](https://www.esios.ree.es/en/) publica carga, produção, mercados, intercâmbios, unidades estruturais e curtailment renovável nodal; a ENTSO-E acrescenta Transparency Platform, ERAA/PECD e dados europeus harmonizados. MITECO/CEDEX/SAIH oferecem hidrologia por reservatório e o CNMC Data uma camada reutilizável CC BY-SA 4.0. PyPSA-Eur fornece um ponto de partida reproduzível para rede, ativos e perfis.
 
-Estas fontes são substitutos aceites para um P3 agregado, mas não tornam a fidelidade simétrica. Em particular, a hidro espanhola será inicialmente representada com armazenamento/produção agregados ENTSO-E, afluências ERAA quando disponíveis e proxies meteorológicas PECD, não com uma reconstrução de cascatas ao nível SNIRH. Os termos de acesso e redistribuição do ESIOS e de cada pacote ENTSO-E têm de ser classificados antes do uso.
+Estas fontes permitem um P3 zonal e hidro por reservatório, mas não tornam a fidelidade simétrica. A topologia hidráulica espanhola é reconstruível; faltam crosswalk reservatório–central–UGH–nó, curvas/eficiências e regras finas. Para térmicas, a REE recebe parâmetros unitários completos, mas a base é confidencial. Para rede, os nós e margens de acesso não constituem um caso load-flow.
 
-`GAP-011` regista esta assimetria. Sem dados adicionais, o estudo pode tirar conclusões ibéricas agregadas e testar política espanhola, mas não alegar validação unitária, nodal ou de cascata com a mesma profundidade do lado português.
+`GAP-011` fica limitado a ativos/operação/licenciamento espanhóis; hidro pertence a `GAP-003` e transmissão a `GAP-013`. Sem dados adicionais, o estudo pode tirar conclusões ibéricas agregadas e testar política espanhola, mas não alegar validação unitária/nodal simétrica.
 
 ## Regras transversais
 
