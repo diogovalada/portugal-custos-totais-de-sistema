@@ -1,69 +1,57 @@
-# Custos totais do sistema elétrico português
+# Custos Totais do Sistema Elétrico em Portugal
 
-Estudo aberto e reproduzível para comparar o custo económico, a adequação e os principais impactos de portefólios elétricos alternativos para Portugal no contexto ibérico.
+Um estudo independente, aberto e totalmente reproduzível sobre quanto custa o sistema elétrico de Portugal continental em 2035, 2040 e 2050. Compara a trajetória oficial com alternativas que dão ao país a mesma segurança de abastecimento e as mesmas emissões.
 
-O projeto terminou a primeira auditoria metodológica e de dados e entra agora numa fatia vertical exploratória. Ainda não existe um resultado quantitativo sobre qual portefólio é preferível. Uma análise independente de planeamento e adequação é realizável; uma réplica operacional integral da REN, da distribuição ou da estabilidade dinâmica não é realizável apenas com dados abertos.
+## Porquê
 
-## Começar aqui
+As decisões de energia dos próximos anos vão marcar o custo da eletricidade durante décadas. Estão em cima da mesa:
 
-- [Estado corrente](PROJECT_STATUS.md): decisões provisórias, conclusões, bloqueios e próximos passos.
-- [Plano de execução](docs/execution-plan.md): fatia vertical, três checkpoints, materialidade e sequência mínima.
-- [Desenho do projeto](docs/project-design.md): perguntas, âmbito, limites, viabilidade e governação.
-- [Contabilidade de custos](docs/cost-accounting.md): fronteira económica e prevenção de dupla contagem.
-- [Metodologia de modelação](docs/modelling-methodology.md): arquitetura, ferramentas, incerteza, adequação e validação.
-- [Cenários ibéricos](docs/scenarios-iberia.md): procura, política, interligações, clima e ramos espanhóis.
-- [Dossier nuclear](docs/nuclear.md): opções nucleares espanholas e hipóteses para um eventual projeto português.
-- [Índice de dados](docs/data/index.md): estado das fontes, lacunas e ligações para as auditorias temáticas.
-- [Registo de decisões](docs/decision-log.md): decisões adotadas e alterações de posição.
-- [Auditoria de investigação de 2026-08-12](docs/archive/research-audit-2026-08-12.md): síntese da ronda de 100 agentes, incertezas reduzidas, lacunas duras e efeito do limite de concorrência.
-- [Benchmark de âmbito de 2026-08-12](docs/archive/scope-benchmark-2026-08-12.md): comparação com estudos suecos, NEA, RTE e o framework britânico para controlar underscope e scope creep.
+- a estratégia de armazenamento;
+- os leilões de eólica offshore;
+- manter ou não as centrais a gás;
+- as interligações;
+- o nuclear espanhol, e se vale a pena preparar uma opção nuclear em Portugal.
 
-O documento monolítico anterior foi preservado como [snapshot histórico](docs/archive/project-memory-2026-08-10.md). Não deve ser atualizado nem citado como posição corrente quando exista um documento canónico mais recente. As auditorias datadas preservam a evidência de cada ronda de investigação; as conclusões correntes continuam a pertencer aos documentos canónicos e aos registos.
+Comparar o custo de cada central isoladamente (o «LCOE») não chega para estas decisões. O que conta é o custo do **sistema completo** necessário para fornecer eletricidade a todas as horas, incluindo nos anos secos: centrais, armazenamento, redes, interligações e reservas.
 
-## Convenções de conhecimento
+A Direção-Geral de Energia e Geologia (DGEG) está a preparar um estudo oficial de custos totais do sistema. Este estudo é independente desse e foi desenhado para:
 
-Os documentos distinguem quatro categorias:
+- ter a máxima qualidade e utilidade;
+- correr inteiramente com ferramentas e dados abertos, para que qualquer pessoa o possa verificar e reproduzir com um só comando;
+- receber críticas e propostas de cenários de qualquer pessoa, incluindo de quem discorda;
+- permitir comparar os seus resultados com os do estudo oficial (mesmos horizontes e mesma decomposição de custos).
 
-- **FACT** — afirmação apoiada por uma fonte identificada e com data de verificação;
-- **ASSUMPTION** — hipótese de modelação ainda sujeita a sensibilidade;
-- **DECISION** — escolha metodológica ou de governação adotada;
-- **OPEN** — questão ainda não resolvida.
+## Como funciona, em resumo
 
-As fontes, pressupostos e lacunas têm identificadores estáveis nos ficheiros em [`registers/`](registers/README.md). Um estado editorial `verified` significa que o documento foi revisto, não que todos os factos permaneçam verdadeiros indefinidamente. Política, software, projetos, capacidades e licenças devem ser reverificados antes de cada release.
+- **Modelo:** um modelo de otimização do investimento e da operação do sistema elétrico, feito com ferramentas abertas (PyPSA e o solver HiGHS).
+- **Portugal e vizinhos:** Portugal escolhe o seu parque ao menor custo. Espanha e França seguem os seus planos oficiais, mas operam hora a hora em conjunto com Portugal.
+- **Clima:** o sistema é dimensionado com vários anos meteorológicos e depois testado em 44 anos reais de vento, sol, temperatura e água, incluindo as piores secas.
+- **Segurança:** todos os portefólios cumprem a mesma norma oficial de segurança de abastecimento.
+- **Resultados:** saem por quatro pilares: custo para o consumidor, segurança de abastecimento, independência energética e energia limpa.
+- **Sem respostas únicas:** não se apresenta um «mix ideal» único. Os resultados são diferenças de custo entre portefólios, limiares («a opção X compensa se custar menos de Y») e intervalos de soluções quase equivalentes.
 
-## Estrutura prevista
+## Estado
 
-```text
-README.md
-PROJECT_STATUS.md
-LICENSE                    # licença de código, por decidir
-LICENSE-DOCS               # licença de documentação, por decidir
-CITATION.cff
-docs/
-  execution-plan.md
-  project-design.md
-  cost-accounting.md
-  modelling-methodology.md
-  scenarios-iberia.md
-  nuclear.md
-  decision-log.md
-  data/
-  archive/
-registers/
-environment/
-src/
-tests/
-data/
-  raw/
-  interim/
-  processed/
-  manifests/
-```
+**Fase de desenho.** O protocolo do estudo está em proposta e ainda não foi aprovado nem registado. Não existem resultados.
 
-`registers/` contém metadados de investigação. `data/` fica reservado aos inputs do modelo, transformações e manifests. Dados sem licença de redistribuição não devem ser versionados; nesses casos serão publicados, quando permitido, o script de aquisição, a proveniência, o checksum e os derivados autorizados.
+| Documento | Conteúdo |
+|---|---|
+| [PROTOCOLO.md](PROTOCOLO.md) | O desenho do estudo: perguntas, métodos, cenários, pressupostos, validação e o que o estudo pode e não pode afirmar |
+| [ROTEIRO.md](ROTEIRO.md) | Datas, marcos e decisões pendentes |
+| [CONTRIBUIR.md](CONTRIBUIR.md) | Como comentar, contestar um pressuposto ou propor um cenário |
+| [docs/decisoes.md](docs/decisoes.md) | Registo das decisões tomadas |
+| [docs/frentes-de-trabalho.md](docs/frentes-de-trabalho.md) | Divisão do trabalho entre agentes |
+| [docs/avaliacao-e-plano-2026-10-08.md](docs/avaliacao-e-plano-2026-10-08.md) | Avaliação que levou à reorientação do projeto, incluindo observações ao caderno de encargos da DGEG |
+| [docs/referencia/](docs/referencia/README.md) | Notas de investigação anteriores: dados, contabilidade e cenários. Material de consulta, não canónico |
 
-Os nomes acima descrevem o estado-alvo; os ficheiros de licença e citação só serão criados depois da decisão de P1. Código, documentação e derivados de dados podem exigir licenças distintas, e cada dataset distribuído conservará também a sua proveniência e condições próprias.
+Datas previstas: protocolo público a 21 de outubro de 2026; versão preliminar a 20 de novembro; versão 1.0 a 11 de dezembro.
 
-## Âmbito de trabalho atual
+## Autoria e transparência
 
-O default científico é um estudo elétrico continental PT–ES, com França como fronteira limitada e ilhas separadas. A implementação começa menor: 2–5 zonas, um ano horário, capacidades fixas, hidro/storage agregados e PyPSA/HiGHS. PyPSA-Eur pode fornecer receitas ou inputs seletivos, mas o workflow completo não é requisito de P0. Só depois do pipeline vertical funcionar entram investimento, três anos meteorológicos e adequação dos portefólios. Isto continua a ser uma hipótese de trabalho até C1.
+- O estudo é publicado em nome do autor, que tem a decisão final em todas as escolhas.
+- O trabalho técnico é executado por agentes de inteligência artificial, sob supervisão de um agente coordenador: recolha de dados, código, corridas do modelo e redação.
+- Para compensar a ausência de uma equipa humana, cada número tem uma fonte verificável, o código tem testes com respostas conhecidas e há uma verificação independente. As instruções dadas aos agentes ficam públicas no repositório.
+
+## Licença
+
+A definir antes da primeira publicação de resultados. A proposta é MIT para o código e CC BY 4.0 para o texto, os dados derivados e os resultados. Os dados de terceiros mantêm as suas licenças.

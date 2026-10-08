@@ -16,26 +16,26 @@ O projeto está a transitar da auditoria metodológica e de dados para P0, a pri
 
 ## Conclusões consolidadas
 
-A auditoria documental de 2026-08-12, realizada por 100 agentes de investigação organizados em coordenadores temáticos e subagentes, está preservada em [research-audit-2026-08-12.md](docs/archive/research-audit-2026-08-12.md). Os documentos temáticos e os registos abaixo contêm o estado canónico posterior à reconciliação.
+A auditoria documental de 2026-08-12, realizada por 100 agentes de investigação organizados em coordenadores temáticos e subagentes, está preservada em [research-audit-2026-08-12.md](archive/research-audit-2026-08-12.md). Os documentos temáticos e os registos abaixo contêm o estado canónico posterior à reconciliação.
 
 | Domínio | Conclusão corrente | Documento canónico |
 |---|---|---|
-| Unidades e nós | Backbone público para grandes unidades e coordenadas de várias centrais; crosswalk físico ao nó continua incompleto | [Ativos](docs/data/generation-and-storage-assets.md) |
-| Parâmetros unitários | Existem priors abertos e a REN recebe valores reais; detalhe português por grupo não é aberto | [Ativos](docs/data/generation-and-storage-assets.md) |
-| Hidro | Planeamento por reservatório PT–ES é viável; hill charts, tailwater, limites por grupo e Tâmega operacional continuam críticos | [Hidro](docs/data/hydro.md) |
-| Reservas e redispatch | Grande parte está pública no SIME a 15 minutos; falta contexto físico e sinais de segundos | [Operações](docs/data/system-operations.md) |
-| Distribuição | Dados de subestação/zona são ricos; grafo elétrico e custos nodais não são públicos | [Rede e estabilidade](docs/data/grid-and-stability.md) |
-| Baterias | Totais oficiais por corte existem; cadastro PT–ES harmonizado MW/MWh/nó/estado/BTM continua confidence-scored | [Ativos](docs/data/generation-and-storage-assets.md) |
-| Custos realizados | Redes reguladas e projetos selecionados têm dados; all-in privado permanece fraco | [Custos de projetos](docs/data/project-costs.md) |
-| Estabilidade | Requisitos, indicadores e planeamento são públicos; estados e modelos dinâmicos não | [Rede e estabilidade](docs/data/grid-and-stability.md) |
-| Nuclear português | Não existe projeto definido cujos custos possam ser observados; exige análise paramétrica | [Nuclear](docs/nuclear.md) |
-| Ilhas | Mensal/anual e qualidade são públicos; operação sub-horária não é aberta | [Ilhas](docs/data/islands.md) |
-| Fiabilidade | LOLE oficial 1,46 h/ano PT e 1,5 h/ano ES; VOLL oficiais zonais identificados | [Metodologia](docs/modelling-methodology.md) |
-| Clima | PECD v4.2 resolve o backbone futuro licenciado; conversão por bacia e caudas continuam ensemble uncertainty | [Metodologia](docs/modelling-methodology.md) |
-| Transmissão | PyPSA-Eur/OSM suporta DC de planeamento; IGM/CGM e estado operacional não são abertos | [Rede e estabilidade](docs/data/grid-and-stability.md) |
-| Espanha | P3 zonal e hidro por reservatório são possíveis; unidade–nó, parâmetros UC e rede elétrica oficial continuam assimétricos | [Índice de dados](docs/data/index.md) |
-| Computação | P0 com 2–5 zonas cabe num portátil; 10–30 clusters e UC × weather × ensemble × ELCC só entram por materialidade | [Metodologia](docs/modelling-methodology.md) |
-| Âmbito | O core elétrico não tem omissão estrutural nova; distribuição profunda, estabilidade, externalidades, incidência, ilhas e economy-wide devem permanecer satélites ou estudos separados salvo materialidade demonstrada | [Desenho](docs/project-design.md) |
+| Unidades e nós | Backbone público para grandes unidades e coordenadas de várias centrais; crosswalk físico ao nó continua incompleto | [Ativos](data/generation-and-storage-assets.md) |
+| Parâmetros unitários | Existem priors abertos e a REN recebe valores reais; detalhe português por grupo não é aberto | [Ativos](data/generation-and-storage-assets.md) |
+| Hidro | Planeamento por reservatório PT–ES é viável; hill charts, tailwater, limites por grupo e Tâmega operacional continuam críticos | [Hidro](data/hydro.md) |
+| Reservas e redispatch | Grande parte está pública no SIME a 15 minutos; falta contexto físico e sinais de segundos | [Operações](data/system-operations.md) |
+| Distribuição | Dados de subestação/zona são ricos; grafo elétrico e custos nodais não são públicos | [Rede e estabilidade](data/grid-and-stability.md) |
+| Baterias | Totais oficiais por corte existem; cadastro PT–ES harmonizado MW/MWh/nó/estado/BTM continua confidence-scored | [Ativos](data/generation-and-storage-assets.md) |
+| Custos realizados | Redes reguladas e projetos selecionados têm dados; all-in privado permanece fraco | [Custos de projetos](data/project-costs.md) |
+| Estabilidade | Requisitos, indicadores e planeamento são públicos; estados e modelos dinâmicos não | [Rede e estabilidade](data/grid-and-stability.md) |
+| Nuclear português | Não existe projeto definido cujos custos possam ser observados; exige análise paramétrica | [Nuclear](nuclear.md) |
+| Ilhas | Mensal/anual e qualidade são públicos; operação sub-horária não é aberta | [Ilhas](data/islands.md) |
+| Fiabilidade | LOLE oficial 1,46 h/ano PT e 1,5 h/ano ES; VOLL oficiais zonais identificados | [Metodologia](modelling-methodology.md) |
+| Clima | PECD v4.2 resolve o backbone futuro licenciado; conversão por bacia e caudas continuam ensemble uncertainty | [Metodologia](modelling-methodology.md) |
+| Transmissão | PyPSA-Eur/OSM suporta DC de planeamento; IGM/CGM e estado operacional não são abertos | [Rede e estabilidade](data/grid-and-stability.md) |
+| Espanha | P3 zonal e hidro por reservatório são possíveis; unidade–nó, parâmetros UC e rede elétrica oficial continuam assimétricos | [Índice de dados](data/index.md) |
+| Computação | P0 com 2–5 zonas cabe num portátil; 10–30 clusters e UC × weather × ensemble × ELCC só entram por materialidade | [Metodologia](modelling-methodology.md) |
+| Âmbito | O core elétrico não tem omissão estrutural nova; distribuição profunda, estabilidade, externalidades, incidência, ilhas e economy-wide devem permanecer satélites ou estudos separados salvo materialidade demonstrada | [Desenho](project-design.md) |
 
 Nenhum destes domínios deve ser descrito em bloco como totalmente inacessível. É necessário distinguir: aberto e reutilizável; público mas fragmentado/licença incerta; existente e solicitável; reservado; ou ainda inexistente.
 
@@ -50,7 +50,7 @@ Nenhum destes domínios deve ser descrito em bloco como totalmente inacessível.
 
 Já estão adotados a separação das ilhas e a classificação `core` / `satellite` / `deferred`; electricity-only PT+ES continental continua a ser o default proposto para confirmação em C1. Granularidade, número de weather years, distribuição, externalidades, modelos secundários e licenças de saída são decisões de implementação ou release; não bloqueiam P0 nem acrescentam itens a C1 sem materialidade demonstrada.
 
-As escolhas científicas e quantitativas estão registadas em [`registers/assumptions.csv`](registers/assumptions.csv). Licenças são verificadas quando uma fonte entra num artefacto preservado e as licenças de saída são decididas antes da release. Escolhas duráveis só passam a decisões quando entram no [registo de decisões](docs/decision-log.md).
+As escolhas científicas e quantitativas estão registadas em [`registers/assumptions.csv`](registers/assumptions.csv). Licenças são verificadas quando uma fonte entra num artefacto preservado e as licenças de saída são decididas antes da release. Escolhas duráveis só passam a decisões quando entram no [registo de decisões](decision-log.md).
 
 ## Riscos prioritários
 
@@ -64,7 +64,7 @@ Já suficientes para uma primeira versão: grande frota via ENTSO-E/DGEG/REN/ESI
 
 ## Próximos passos
 
-O foco imediato é P0 no [plano de execução](docs/execution-plan.md):
+O foco imediato é P0 no [plano de execução](execution-plan.md):
 
 - criar ambiente mínimo e uma fixture de balanço;
 - obter apenas os inputs necessários a um ano horário PT–ES com França limitada;

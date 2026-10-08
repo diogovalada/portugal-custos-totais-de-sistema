@@ -3,6 +3,8 @@
 > Data: 2026-10-08
 > Natureza: proposta para decisão. Não substitui os documentos existentes enquanto não for aceite.
 > Origem: revisão assistida por IA, feita a pedido do coordenador do projeto.
+>
+> **Nota de 2026-10-08, depois das decisões do autor:** o diagnóstico (secções 2 a 4) e os anexos A e B continuam válidos. A estratégia, o desenho e o plano (secções 5 a 8, 10) foram substituídos pelo [PROTOCOLO.md](../PROTOCOLO.md) e pelo [ROTEIRO.md](../ROTEIRO.md). As decisões estão em [decisoes.md](decisoes.md).
 
 ## 1. Resumo
 
@@ -60,7 +62,7 @@ Há também riscos conceptuais de dupla contagem e de mistura entre custos e tra
 
 ### 3.1 O que está certo e deve ser mantido
 
-- **Métrica principal:** o custo de recursos, ou seja, o que o país efetivamente gasta. Transferências e externalidades ficam à parte. A lista de duplas contagens em [`cost-accounting.md`](cost-accounting.md) é boa e serve diretamente para criticar o caderno da DGEG.
+- **Métrica principal:** o custo de recursos, ou seja, o que o país efetivamente gasta. Transferências e externalidades ficam à parte. A lista de duplas contagens em [`cost-accounting.md`](referencia/cost-accounting.md) é boa e serve diretamente para criticar o caderno da DGEG.
 - **Comparação de portefólios completos** sob a mesma procura, fiabilidade e emissões, em vez de LCOE ou de "custos de integração" atribuídos a uma tecnologia.
 - **Fronteira:** contexto ibérico, França como fronteira limitada, ilhas fora.
 - **Nuclear:** entra em blocos inteiros, distingue a extensão espanhola do nuclear novo português, e o resultado é um limiar de break-even.
