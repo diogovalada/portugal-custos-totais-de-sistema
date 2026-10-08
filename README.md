@@ -44,13 +44,6 @@ A Direção-Geral de Energia e Geologia (DGEG) está a preparar um estudo oficia
 | [docs/avaliacao-e-plano-2026-10-08.md](docs/avaliacao-e-plano-2026-10-08.md) | Avaliação que levou à reorientação do projeto, incluindo observações ao caderno de encargos da DGEG |
 | [docs/referencia/](docs/referencia/README.md) | Notas de investigação anteriores: dados, contabilidade e cenários. Material de consulta, não canónico |
 
-Datas previstas: protocolo público a 21 de outubro de 2026; versão preliminar a 20 de novembro; versão 1.0 a 11 de dezembro.
-
-## Autoria e transparência
-
-- O estudo é publicado em nome do autor, que tem a decisão final em todas as escolhas.
-- O trabalho técnico é executado por agentes de inteligência artificial, sob supervisão de um agente coordenador: recolha de dados, código, corridas do modelo e redação.
-- Para compensar a ausência de uma equipa humana, cada número tem uma fonte verificável, o código tem testes com respostas conhecidas e há uma verificação independente. As instruções dadas aos agentes ficam públicas no repositório.
 
 ## Licença
 
