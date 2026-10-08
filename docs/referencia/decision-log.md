@@ -23,4 +23,4 @@
 
 `D-PLAN-002` substitui especificamente a sequência rígida e os seis gates preservados por `D-PLAN-001`; as restantes correções factuais e documentais de `D-PLAN-001` mantêm-se.
 
-Questões abertas pertencem a [`assumptions.csv`](../registers/assumptions.csv), o estado corrente a [`PROJECT_STATUS.md`](../PROJECT_STATUS.md) e proveniência de revisões ao arquivo ou histórico Git — não a este registo.
+Questões abertas pertencem a [`assumptions.csv`](registers/assumptions.csv), o estado corrente a [`PROJECT_STATUS.md`](PROJECT_STATUS.md) e proveniência de revisões ao arquivo ou histórico Git — não a este registo.

@@ -38,7 +38,7 @@ Cada dado deve ser classificado como:
 | Renováveis realizáveis | potenciais técnicos fortes; pipeline, build rates e custo-potencial incompletos | [Cenários](../scenarios-iberia.md) |
 | Frota e repowering | capacidade líquida disponível; relógios e fluxos brutos por ativo incompletos | [Ativos](generation-and-storage-assets.md) |
 
-O registo machine-readable encontra-se em [`registers/data-gaps.csv`](../../registers/data-gaps.csv).
+O registo machine-readable encontra-se em [`registers/data-gaps.csv`](../registers/data-gaps.csv).
 
 ## Fontes transversais
 
@@ -75,4 +75,4 @@ Estas fontes permitem um P3 zonal e hidro por reservatório, mas não tornam a f
 
 ## Prioridade e efeito na execução
 
-A classificação de prioridade, a primeira fase afetada e a consequência de cada lacuna pertencem exclusivamente a [`registers/data-gaps.csv`](../../registers/data-gaps.csv). Este índice resume cobertura e encaminha para a evidência temática sem repetir essas classificações.
+A classificação de prioridade, a primeira fase afetada e a consequência de cada lacuna pertencem exclusivamente a [`registers/data-gaps.csv`](../registers/data-gaps.csv). Este índice resume cobertura e encaminha para a evidência temática sem repetir essas classificações.

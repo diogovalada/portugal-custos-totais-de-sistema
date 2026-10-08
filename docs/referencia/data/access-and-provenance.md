@@ -62,7 +62,7 @@ Cada fonte promovida de descoberta para input de um resultado preservado deve re
 - script e versão da transformação;
 - limitações jurídicas e técnicas.
 
-O catálogo de descoberta encontra-se em [`registers/sources.csv`](../../registers/sources.csv). Um URL citado num Markdown não substitui o manifest do ficheiro efetivamente usado; uma fonte apenas investigada não precisa de manifest completo.
+O catálogo de descoberta encontra-se em [`registers/sources.csv`](../registers/sources.csv). Um URL citado num Markdown não substitui o manifest do ficheiro efetivamente usado; uma fonte apenas investigada não precisa de manifest completo.
 
 ## Política de dados do repositório
 
