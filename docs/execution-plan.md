@@ -1,303 +1,172 @@
 # Plano de execução
 
-> Estado editorial: working  
-> Última atualização: 2026-08-12  
-> Âmbito: sequência, dependências, entregáveis, gates e envelope de recursos  
-> Documento canónico para: execução faseada do estudo  
-> Não é canónico para: estado corrente, metodologia, pressupostos, decisões ou conteúdo das lacunas  
-> Rever quando: mudar o charter, a sequência crítica, um gate ou um entregável
+> Estado editorial: working
+> Última atualização: 2026-08-13
+> Âmbito: sequência mínima, checkpoints, critérios de promoção e recursos
+> Documento canónico para: execução do estudo
+> Não é canónico para: valores dos pressupostos, conteúdo das lacunas ou decisões adotadas
 
-## Regra de propriedade
+## Princípio
 
-Este documento responde a cinco perguntas duráveis: em que ordem avançar, o que exige cada fase, o que ela entrega, como se aceita o resultado e quando se deve parar ou reduzir a ambição.
+O projeto deve seguir o caminho mais curto até um resultado falsificável. Controlos científicos bloqueiam alegações proporcionais ao seu risco; não bloqueiam protótipos internos concebidos para aprender.
 
-Outros artefactos mantêm responsabilidades distintas:
+Existem dois modos de trabalho:
 
-- [PROJECT_STATUS.md](../PROJECT_STATUS.md): estado volátil, bloqueios presentes e ações imediatas;
-- [project-design.md](project-design.md): propósito, âmbito, limites e governação;
-- [cost-accounting.md](cost-accounting.md): ontologia e regras contabilísticas;
-- [modelling-methodology.md](modelling-methodology.md): formulação, ferramentas, incerteza e validação;
-- [`assumptions.csv`](../registers/assumptions.csv): valores, confiança e review triggers;
-- [decision-log.md](decision-log.md): decisões adotadas e conclusões substituídas;
-- [`data-gaps.csv`](../registers/data-gaps.csv): conteúdo e ação própria de cada lacuna.
+- **exploratório:** spikes, fixtures e modelos descartáveis podem avançar com proxies identificadas; não produzem conclusões públicas nem alteram decisões silenciosamente;
+- **claim-bearing:** configurações, métricas, inputs e tolerâncias relevantes estão congelados e os resultados podem sustentar alegações dentro da fidelidade validada.
 
-O plano referencia IDs desses registos, sem copiar os seus valores. Não contém percentagem concluída, estado de tarefas, calendário ou backlog detalhado. Uma fase termina por evidência e critérios de aceitação, não pela passagem do tempo.
+Não criar um novo documento, modelo ou pipeline quando uma configuração, teste ou secção de um artefacto existente resolver o problema. Dados e runs só recebem manifests completos quando forem usados num resultado preservado.
 
-## Sequência e gates
+## Três checkpoints
 
-| Fase | Resultado que permite avançar | Gate |
+| Checkpoint | Antes de | Evidência mínima |
 |---|---|---|
-| P1 — Protocolo e fundações | contrato científico e infraestrutura mínima reproduzível | G1 — charter adotado |
-| P2 — Ledger histórico | MVP público que reconcilia energia, custos e proveniência | G2 — ledger reconciliado |
-| P3 — Modelo histórico ibérico | backcast PT–ES com capacidades fixas e holdout | G3 — representação histórica aceite |
-| P4 — Expansão e cenários | portefólios comparáveis sob constraints comuns | G4 — resultados robustos e contabilisticamente válidos |
-| P5 — Adequação e módulos | risco probabilístico e limites técnicos quantificados | G5 — claims técnicos proporcionais à evidência |
-| P6 — Replicação e publicação | release reproduzida, revista e auditável | G6 — autorização de publicação |
+| C1 — contrato científico | tratar comparações como evidência substantiva ou comunicá-las fora da exploração interna | pergunta, fronteiras, contrafactuais, headline, procura, fiabilidade, emissões, horizonte principal e limites de claims congelados |
+| C2 — modelo qualificado | promover resultados a headlines candidatos ou conclusões de draft | backcast/holdout aceite, contabilidade coerente, adequação dos finalistas e módulos materiais incorporados ou limitados |
+| C3 — release reproduzível | divulgar qualquer headline ou versão citável | reprodução limpa, licenças verificadas, revisão proporcional e ligação de cada headline aos inputs/config/run |
 
-O caminho crítico é `P1 → P2 → P3 → P4 → P5 → P6`. Trabalho preparatório pode decorrer em paralelo, mas não elimina os gates.
+Os checkpoints não são autorizações para investigação interna. Uma falha reduz a alegação ou a fidelidade; não obriga a preencher uma lacuna com falsa precisão.
 
-## P1 — Protocolo e fundações
+## Sequência mínima
 
-### Objetivo
+### P0 — Fatia vertical exploratória
 
-Fechar o contrato científico antes de produzir resultados politicamente interpretáveis e garantir que as fases seguintes têm uma base reproduzível.
+Começa imediatamente, antes de C1, e serve para descobrir problemas reais de dados e formulação.
 
-### Dependências
+Configuração inicial:
 
-- resolver ou adotar os pressupostos marcados `needed_by_phase=P1`, incluindo `A-SCOPE-001`, `A-SCOPE-002`, `A-FRANCE-001`, `A-ISLANDS-001`, `A-STACK-001`, `A-DEMAND-BOUNDARY-001`, `A-COUNTERFACTUAL-001`, `A-EMISSIONS-001` e os campos ainda `TBD`;
-- preservar `D-COST-001`, `D-MOD-001`, `D-GOV-001` e `D-DATA-001`;
-- medir as lacunas antes de fazer pedidos administrativos amplos.
+- Portugal e Espanha como 2–5 zonas; França como fronteira limitada;
+- um ano fechado para calibração exploratória e outro para holdout futuro;
+- capacidades fixas, procura horária, VRE, térmicas agregadas, hidro/storage agregados e interligações;
+- PyPSA + HiGHS, sem investimento, UC detalhado, 15/5 minutos ou modelos alternativos;
+- balanço físico e um esqueleto de 8–12 categorias de custo de recursos;
+- ambiente mínimo, uma fixture manual por identidade crítica e um manifest gerado automaticamente.
 
-### Entregáveis
+Entregável: pipeline executável ponta a ponta e relatório curto de cobertura/resíduos. Não é necessário concluir o ledger financeiro, externalidades, cadastro unitário ou pedidos administrativos para executar P0.
 
-- protocolo versionado com pergunta, fronteiras, horizonte, anos-alvo e critérios de alegação;
-- ontologia de custos e schema dos três ledgers;
-- cenário/configuração-base sem resultados políticos;
-- ambiente bloqueado, estrutura de testes e fixture sintética mínima;
-- catálogo priorizado de inputs portugueses e espanhóis, licenças, manifests e pedidos administrativos;
-- decisão separada sobre licenças de saída para código, documentação e derivados de dados, mais metadados de citação; as escolhas finais entram no decision log;
-- plano de pré-registo, revisão e conflitos de interesse.
+Se o protótipo não fechar o balanço, reduzir zonas, categorias ou período até localizar o erro. Se nem uma versão nacional/anual for reproduzível, publicar primeiro o diagnóstico de dados.
 
-### G1 — Critérios de aceitação
+### P1 — Charter-lite e C1
 
-- todas as escolhas necessárias a P2 foram convertidas em decisões ou permanecem sensibilidades explicitamente delimitadas;
-- fronteira geográfica, setores, ano monetário, taxa social, procura e fiabilidade são coerentes entre protocolo, ledger e configuração;
-- cada categoria de custo tem owner, unidade, tratamento contabilístico e teste contra dupla contagem;
-- a fixture sintética executa aquisição simulada, transformação, ledger e testes numa máquina limpa;
-- fontes essenciais de P2 têm licença classificada e alternativa documentada quando não redistribuíveis;
-- protocolo e métricas são congelados antes dos cenários politicamente sensíveis.
+O charter congela apenas escolhas que podem alterar a interpretação:
 
-### Stop/go
+1. sistema continental PT+ES, setores e condições de fronteira;
+2. custo de recursos PT+ES como objetivo e regra separada para reportar a perspetiva portuguesa;
+3. um horizonte/ano-alvo principal; outros anos são extensões ou sensibilidades;
+4. procura e denominadores, padrão de fiabilidade e tratamento das emissões;
+5. contrafactuais concretos: referência all-tech, no-new-nuclear, extensões espanholas por unidade e nuclear português paramétrico em blocos inteiros;
+6. moeda, desconto como distribuição/sensibilidade e categorias do headline;
+7. claims permitidos e condições que obrigam a apresentar intervalos ou indiferença.
 
-Se não for possível fechar uma fronteira coerente ou reproduzir os inputs mínimos, reduzir P2 ao subconjunto publicável e declarar o restante fora de âmbito. Não avançar para um modelo quantitativo que misture fronteiras ou ledgers incompatíveis.
+Não é necessário resolver em C1 externalidades completas, distribuição detalhada, ilhas, Marrocos, modelo secundário, taxa de avaria por grupo ou licença de todas as fontes potenciais. Basta classificá-los como `core`, `satellite` ou `deferred` e identificar qualquer efeito que possa invalidar o primeiro resultado.
 
-## P2 — Ledger histórico
+C1 é satisfeito quando estas escolhas são registadas no decision log e existe uma configuração-base legível pela máquina. O congelamento aplica-se aos runs interpretáveis posteriores; P0 pode ser refeito livremente.
 
-### Objetivo
+### P2 — Evidência e ledger em paralelo
 
-Produzir um MVP autónomo para 2–3 anos recentes, conciliando fluxos físicos, custos de recursos e incidência financeira sem depender ainda de expansão ótima.
+P2 deixa de ser um gate obrigatório antes do backcast. O mínimo necessário ao core é:
 
-### Dependências
+- pipelines e proveniência dos inputs efetivamente usados;
+- reconciliação física do período histórico escolhido;
+- esqueleto de custo de recursos com ano monetário, unidade, fonte e regra contra dupla contagem;
+- classificação jurídica apenas dos dados que entram no artefacto preservado;
+- cobertura e resíduos conhecidos.
 
-- G1 satisfeito;
-- `GAP-004`, `GAP-006`, `GAP-007`, `GAP-012` e `GAP-015` medidos e tratados segundo o respetivo `effect_on_execution`;
-- inventário inicial de unidades e correspondências de `GAP-001` suficiente para explicar a cobertura;
-- ano-base monetário e regras de reconciliação adotados.
+O ledger financeiro/distributivo integral, a monetização de externalidades, três anos completos, custos privados por projeto e um cadastro unitário perfeito são workstreams satélite. Podem gerar releases próprias, mas não bloqueiam P3/P4 salvo se o custo omitido for comparável à diferença entre alternativas.
 
-### Entregáveis
+Pedidos administrativos devem ser estreitos e orientados por uma lacuna observada no protótipo. Não pedir um dump amplo apenas porque pode vir a ser útil.
 
-- pipelines de aquisição e transformação com manifests e checksums;
-- balanço físico horário ou na melhor resolução licenciada;
-- ledger de recursos, ledger financeiro e externalidades observáveis mantidos separados;
-- reconciliação com REN, ENTSO-E, OMIE, ERSE, DGEG e outras fontes aplicáveis;
-- relatório de cobertura, resíduos, revisões e limitações;
-- pacote reproduzível e publicação autónoma do MVP.
+### P3 — Backcast qualificado
 
-### G2 — Critérios de aceitação
+Construir o modelo histórico com capacidades fixas:
 
-- balanços de energia e dinheiro fecham dentro de tolerâncias pré-registadas ou cada resíduo material está identificado;
-- cada linha de custo tem fonte, unidade, ano monetário e classificação contabilística;
-- transferências não são somadas ao custo de recursos;
-- revisões, timezone, DST, gross/net e HHV/LHV são preservados;
-- todos os dados versionados podem ser redistribuídos; os restantes têm scripts/manifests e instruções legais;
-- licenças de saída e metadados de citação cobrem separadamente código, documentação e derivados distribuídos;
-- uma reprodução limpa gera os outputs e testes esperados.
+- começar em 2–5 zonas e aumentar resolução apenas por teste de materialidade;
+- usar pelo menos um período de calibração e um holdout que não participa na afinação;
+- comparar balanço, produção, mix, armazenamento/hidro, comércio, emissões e restrições observáveis;
+- congelar métricas e tolerâncias antes da calibração claim-bearing;
+- identificar explicitamente parâmetros genéricos, correspondências inferidas e proxies;
+- não exigir reprodução de preços sem bids, uplift e comportamento estratégico.
 
-### Stop/go
+Se a resolução adicional não alterar materialmente custo, ranking, congestionamento ou viabilidade, conservar a versão mais simples. Se o backcast falhar, o modelo pode continuar como experiência, mas não sustenta P4 claim-bearing.
 
-Se os balanços não reconciliarem, não usar o ledger para calibrar P3. Publicar primeiro o diagnóstico de resíduos ou reduzir a granularidade até que a identidade física e contabilística seja verificável.
+### P4 — Primeira comparação forward
 
-## P3 — Modelo histórico ibérico
+O primeiro desenho experimental usa:
 
-### Objetivo
+- um ano-alvo principal e trajetória brownfield suficiente para representar retires, lead times e valor terminal;
+- uma referência e 2–3 contrafactuais focais, não a matriz completa de possibilidades;
+- três anos meteorológicos/hídricos coerentes no screening inicial;
+- investimento contínuo para tecnologias divisíveis e decisões enumeradas/binárias para nuclear e outros ativos lumpy;
+- procura, fiabilidade e emissões comuns;
+- capacidade firme/ELCC conservadora ou constraint equivalente antes da adequação detalhada;
+- sensibilidades unidimensionais ou narrativas coerentes, sem produto cartesiano.
 
-Construir e validar, na fronteira adotada em P1, um modelo brownfield com capacidades fixas antes de permitir investimento endógeno. O default de trabalho atual é PT–ES com França limitada, não uma decisão implícita deste plano.
+MGA, amostragem global, stochastic expansion, CVaR e minimax regret só entram depois de o primeiro resultado mostrar qual incerteza pode alterar a decisão. GenX só entra se um caso reduzido revelar discrepância estrutural ou se a revisão exigir um challenger de expansão.
 
-### Dependências
+Entregável: portefólios candidatos e superfícies condicionais, nunca um “mix verdadeiro”. Nuclear português é reportado como superfície de break-even de custo, prazo e desempenho, não como estimativa pontual de um projeto inexistente.
 
-- G2 satisfeito;
-- `GAP-001`, `GAP-002`, `GAP-003`, `GAP-004`, `GAP-005`, `GAP-006`, `GAP-013` e `GAP-017` tratados ao nível exigido pela resolução escolhida;
-- `GAP-011` auditado e os substitutos espanhóis aceites ou o teto de fidelidade correspondente declarado;
-- `A-SPACE-001`, `A-TIME-001`, `A-STACK-001` e `A-DIST-001` adotados ou definidos como variantes estruturais;
-- `A-BACKCAST-YEARS` e `A-BACKCAST-TOL-001` congelados antes da calibração; os anos de holdout são excluídos da calibração e da afinação das tolerâncias.
+### P5 — Adequação, materialidade e C2
 
-O backcast físico pode usar uma janela maior do que os 2–3 anos do ledger histórico de P2. Apenas os anos de sobreposição com `A-HISTORY-001` recebem reconciliação integral de custos; os restantes suportam validação física e operacional.
+Todos os portefólios finalistas recebem uma verificação probabilística de adequação proporcional ao claim:
 
-### Entregáveis
+- clima, avarias, manutenção, interligações e limites energéticos de hidro/storage;
+- LOLE e EENS separados para Portugal e Espanha;
+- common random numbers, convergência e intervalos de confiança;
+- expansão do ensemble meteorológico apenas nos portefólios fixos e até precisão suficiente;
+- UC/redispatch detalhado numa amostra de períodos críticos quando material.
 
-- inventário versionado e crosswalk de ativos com confiança/proveniência;
-- modelo histórico na fronteira adotada, com rede e condições externas documentadas;
-- hidro, storage, reservas e indisponibilidades representados à fidelidade suportada;
-- relatório de calibração pré/pós-ajuste;
-- avaliação de holdout e difference register;
-- baseline histórico fixo para comparação dos cenários.
+Capacidade ou custo corretivo necessário para cumprir fiabilidade regressa a P4. O ciclo P4↔P5 termina quando a adequação deixa de alterar materialmente o portefólio ou quando a incerteza obriga a reportar uma fronteira em vez de um ranking.
 
-### G3 — Critérios de aceitação
+Distribuição, estabilidade, reservas finas, externalidades, incidência, ilhas e segurança geopolítica começam como screens ou contas satélite. Um módulo sobe ao core apenas se:
 
-- balanço, produção, mix, flows, reservatórios, emissões e o proxy documentado de restrições/curtailment passam `A-BACKCAST-TOL-001`; enquanto faltar uma série canónica de curtailment, aplica-se apenas o proxy definido em [system-operations.md](data/system-operations.md);
-- a calibração não usa o holdout nem altera retrospetivamente os critérios;
-- não são exigidos preços reproduzidos sem bids, uplift ou comportamento estratégico;
-- correspondências inferidas, parâmetros sintéticos e proxies estão identificados;
-- resolução espacial/temporal acrescenta valor demonstrável face a uma baseline simples;
-- testes dimensionais, balanços, SOC, água, perdas e solver passam.
+1. puder alterar viabilidade, ranking ou diferença de custo;
+2. tiver uma representação testável;
+3. não duplicar custo ou constraint já incluído;
+4. o ganho esperado justificar dados, compute e manutenção adicionais.
 
-### Stop/go
+C2 é satisfeito quando o backcast/holdout, as identidades contabilísticas e a adequação dos finalistas suportam precisamente os headlines propostos. Efeitos omitidos materialmente comparáveis ao intervalo entre alternativas obrigam a reduzir a alegação.
 
-Se parâmetros unitários ou de rede não sustentarem a resolução pretendida, recuar para zonas/subestações e transformar detalhe incerto em distribuições. Não promover uma inferência geográfica a nó oficial nem uma proxy a validação de operador.
+### P6 — Publicação e C3
 
-## P4 — Expansão e cenários
+Antes de uma release citável:
 
-### Objetivo
+- uma máquina limpa reproduz os outputs anunciados dentro de tolerâncias pré-fixadas;
+- código, documentação e dados/derivados têm licenças compatíveis;
+- cada headline liga a commit, configuração, inputs, solver e seeds;
+- método, contabilidade, dados e claims recebem revisão apenas pelos perfis relevantes ao que é publicado;
+- limitações, desacordos materiais e efeitos não monetizados acompanham os resultados;
+- a versão pública é imutável e citável.
 
-Comparar portefólios brownfield nos anos-alvo adotados e respetivos contrafactuais sob a mesma procura, fiabilidade, emissões e contabilidade.
+Preprint, DOI, período de comentários e response matrix pertencem a P6, não a P0/P1. Uma release intermédia aplica estas regras apenas ao artefacto e aos claims que efetivamente publica.
 
-### Dependências
+## Critério de materialidade
 
-- G3 satisfeito;
-- narrativas de [scenarios-iberia.md](scenarios-iberia.md) materializadas em configurações versionadas;
-- `A-WEATHER-001`, `A-AGG-001`, `A-AGG-002`, `A-MGA-001` e pressupostos nucleares adotados como distribuições/sensibilidades;
-- `A-TECHCOST-001`, `A-FUELCO2-001` e `A-CLIMATE-DATA-001` resolvidos com versões, licenças e transformações documentadas;
-- `GAP-009` limita claims a superfícies paramétricas enquanto não existir projeto português.
-- `GAP-014`, `GAP-016` e `GAP-018` materializados em narrativas, constraints e ensembles explícitos, sem transformar metas ou potenciais técnicos em previsões.
+Não usar um limiar universal antes de observar a escala do problema. Para cada possível extensão, comparar o maior efeito plausível com:
 
-### Entregáveis
+- a diferença de custo entre portefólios;
+- a margem de fiabilidade/emissões;
+- a incerteza já reportada;
+- o erro do backcast.
 
-- registry de cenários e matriz de compound stresses;
-- runs de expansão/dispatch com manifests completos;
-- portefólios, capacidade, produção, rede, storage, comércio e cost stacks;
-- análise de sensibilidade, incerteza estrutural e alternativas quase ótimas;
-- comparação entre custo de recursos, incidência financeira e externalidades;
-- shortlist congelada de portefólios candidatos para P5.
+Se o efeito for claramente menor, fica como sensibilidade ou limitação. Se for comparável, testar uma representação simples. Só depois promover a versão detalhada. A nota de promoção pode ser uma issue curta com claim afetado, evidência, implementação mínima e critério de saída; não exige um novo artefacto de governação.
 
-### G4 — Critérios de aceitação
+## Trabalho paralelo e adiado
 
-- todos os portefólios satisfazem constraints comuns ou as violações são reportadas;
-- nenhum headline depende apenas de um weather year, cenário político ou valor pontual incerto;
-- accounting identities e reconciliação com P2 continuam válidas;
-- períodos representativos, quando usados, passam `A-AGG-001` e `A-AGG-002` ou são rejeitados;
-- near-optimalidade e não-unicidade são reportadas;
-- custos, atraso e financiamento correlacionados não são contados duas vezes;
-- cada resultado é rastreável a config, inputs, commit, solver e random seeds.
+Podem avançar em paralelo sem entrar no caminho crítico:
 
-### Stop/go
+- pedidos administrativos acionados por lacunas verificadas;
+- crosswalk unitário, hidro fino, baterias e custos realizados;
+- ledger financeiro e externalidades;
+- preparação de adequação e fixtures sintéticas.
 
-Não selecionar um “mix verdadeiro”. Se rankings mudarem materialmente com hipóteses plausíveis, o resultado deve ser uma fronteira, intervalo ou decisão condicional. Portefólios que falhem robustez básica não avançam como candidatos principais.
+Ficam adiados até existir evidência de materialidade: 10–30 clusters, UC anual unit-level, 15/5 minutos generalizados, modelo integral da distribuição, estabilidade dinâmica TSO, sector coupling completo, ilhas no modelo continental e intercomparação sistemática com vários modelos.
 
-## P5 — Adequação e módulos técnicos
+## Compute e esforço
 
-### Objetivo
+P0 deve correr num portátil. Cloud só é contratada depois de profiling demonstrar que memória ou throughput bloqueiam um run necessário. Priorizar redução de dimensão, formulação e runs independentes por weather year antes de GPU ou infraestrutura permanente.
 
-Testar os portefólios congelados fora da otimização de expansão e quantificar risco de escassez, operação crítica e custos omitidos.
+O primeiro objetivo de gestão é obter P0 em semanas, não completar P1+P2 como programa documental. Um preprint ibérico claim-bearing continua a ser trabalho de vários meses; módulos profundos e revisão especializada aumentam o calendário apenas quando os respetivos claims forem mantidos.
 
-### Dependências
+## Alterações ao plano
 
-- G4 satisfeito e shortlist imutável;
-- `A-RELIABILITY-001`, `A-ADEQUACY-001`, `A-TIME-002`, `A-WEATHER-002` e `A-MODEL2-001` confirmados pelos pilotos aplicáveis;
-- `GAP-002` e `GAP-003` tratados probabilisticamente;
-- `GAP-005` e `GAP-008` definem o limite entre análise de rede, screening e validação dinâmica;
-- `GAP-010` só entra se as ilhas forem formalmente incluídas.
-
-### Entregáveis
-
-- sequential Monte Carlo com LOLE, EENS, quantis e intervalos de confiança;
-- UC/economic dispatch em rolling horizon e períodos sub-horários críticos;
-- testes de interligações, manutenção, avarias e restrições energéticas;
-- módulos de distribuição, estabilidade, externalidades ou outros custos omitidos na fidelidade autorizada;
-- ELCC ou métricas equivalentes quando metodologicamente defensáveis;
-- relatório de claims permitidos e efeitos ainda não monetizados.
-
-### G5 — Critérios de aceitação
-
-- convergência estatística cumpre `A-ADEQUACY-001` ou a limitação é quantificada;
-- common random numbers e bootstrap por história/climate year são usados nas comparações;
-- ausência observada de ENS é reportada como upper bound, nunca risco zero;
-- adequação, N-1, frequência, tensão e estabilidade dinâmica permanecem conceitos separados;
-- resultados a 15/5 minutos não contradizem materialmente o despacho horário sem explicação;
-- modelos sintéticos são rotulados como screening e não como validação TSO.
-
-### Stop/go
-
-Se a camada dinâmica não for acessível, excluir claims de segurança transitória em vez de os preencher com confiança falsa. Se um portefólio falhar adequação, regressar a P4 com a falha documentada e uma nova versão do candidato; não ajustar silenciosamente o resultado congelado.
-
-## Regra mínima para releases intermédias
-
-Um artefacto de P2 ou P4 só ativa esta regra quando recebe uma tag de release, DOI ou anúncio externo. Commits e outputs internos de trabalho não são releases.
-
-Antes de qualquer release intermédia:
-
-- o âmbito e as alegações ficam limitados ao gate já alcançado e passam, sem flexibilização, a política de alegações de [project-design.md](project-design.md);
-- uma reprodução limpa gera os outputs anunciados dentro de tolerâncias declaradas para esse artefacto;
-- método, dados/licenças e alegações recebem revisão proporcional ao que é tornado público;
-- a versão é imutável e citável, com commit, configuração, manifests e limitações identificados;
-- as licenças de saída de código, documentação e derivados de dados estão decididas e não contradizem os termos dos inputs.
-
-Esta verificação é uma versão limitada de P6, não uma autorização antecipada para claims que dependam de P5 ou G6.
-
-## P6 — Replicação e publicação
-
-### Objetivo
-
-Submeter dados, código, método e alegações a reprodução e revisão independentes antes da conclusão pública.
-
-### Dependências
-
-- G5 satisfeito para os claims incluídos;
-- protocolo, decision log, assumptions register, manifests e limitações atualizados;
-- `A-REPRO-TOL-001` congelado antes da reprodução independente;
-- licenças e permissões verificadas para todos os artefactos distribuídos.
-
-### Entregáveis
-
-- pacote de reprodução numa máquina limpa;
-- relatório de revisão técnica, regulatória e contabilística;
-- revisão adversarial de claims e matriz agree/disagree/resolution;
-- preprint, anexos, dataset permitido e repositório documentado;
-- período público de issues e response matrix;
-- release imutável, citação e DOI.
-
-### G6 — Critérios de aceitação
-
-- terceiro independente reproduz os headline results dentro de `A-REPRO-TOL-001`;
-- findings materiais estão resolvidos ou publicados como desacordo explícito;
-- nenhuma fonte restrita, credencial ou dado confidencial é distribuído;
-- conclusões respeitam os limites definidos em [project-design.md](project-design.md);
-- cada número principal liga a run manifest e cenário;
-- versão pública, paper e artefactos não divergem.
-
-### Stop/go
-
-Não publicar uma conclusão principal que falhe reprodução, dependa de dados essenciais inacessíveis sem alternativa ou exceda a fidelidade validada. É aceitável publicar um resultado condicional ou negativo sobre os limites do estudo.
-
-## Dependências e trabalho paralelizável
-
-O conteúdo canónico de cada lacuna permanece em [`data-gaps.csv`](../registers/data-gaps.csv). Os campos `first_needed_by_phase` e `effect_on_execution` permitem distinguir uma ausência que bloqueia um claim de uma que apenas reduz fidelidade.
-
-Em paralelo com o caminho crítico podem avançar:
-
-- catálogo, licenças e pedidos administrativos, desde P1;
-- crosswalk de ativos, reconstrução hidro e inventário de baterias, desde P1/P2;
-- contratação de revisão e preparação da reprodução, antes de P6;
-- desenho dos módulos de adequação e testes sintéticos, sem usar resultados futuros;
-- documentação e manifests em todas as fases.
-
-Não devem avançar antes do gate correspondente: calibração histórica antes de G2; investimento endógeno antes de G3; adequação dos candidatos antes de G4; interpretação política antes do protocolo e dos testes aplicáveis.
-
-## Envelope de recursos
-
-Estas são ordens de grandeza de planeamento, não calendário ou compromisso:
-
-| Resultado | Esforço plausível |
-|---|---|
-| P1 + P2, incluindo ledger histórico | cerca de 8–12 semanas full-time para um MVP estreito |
-| P1–P4, preprint elétrico ibérico | cerca de 9–15 meses full-time; prolongar se a intercomparação GenX entrar no caminho crítico |
-| P5 com adequação e módulos profundos | esforço adicional material e revisão especializada |
-| Extensão totalmente sector-coupled | aproximadamente mais 18–36 meses; fora do núcleo inicial |
-| Estudo economy-wide definitivo | não é projeto de uma só pessoa |
-
-Orçamento direto preliminar para P1–P6: EUR 15 mil–60 mil, sobretudo revisão especializada e reprodução. Cloud e arquivo: EUR 1 mil–10 mil. Computação só tende a dominar com alta resolução, UC anual, sector coupling ou grandes ensembles.
-
-Os perfis de revisão e a responsabilidade pelo uso de AI permanecem canónicos na secção de governação de [project-design.md](project-design.md).
-
-## Mudanças ao plano
-
-Uma alteração de fase, gate ou propriedade canónica exige entrada no [decision log](decision-log.md). Alterações de valores permanecem no assumptions register; alterações de estado ficam exclusivamente em `PROJECT_STATUS.md`. O histórico Git preserva versões anteriores, mas apenas esta página define a sequência corrente.
+Registar no decision log apenas mudanças que alterem pergunta, headline, checkpoint, claim ou resultado reproduzível. Refactors, tarefas, experiências falhadas e estado corrente pertencem ao Git, às issues ou ao `PROJECT_STATUS.md`, não a novos rituais documentais.

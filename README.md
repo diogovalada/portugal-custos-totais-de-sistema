@@ -2,12 +2,12 @@
 
 Estudo aberto e reproduzível para comparar o custo económico, a adequação e os principais impactos de portefólios elétricos alternativos para Portugal no contexto ibérico.
 
-O projeto encontra-se na fase de desenho metodológico e auditoria de dados. Ainda não existe um resultado quantitativo sobre qual portefólio é preferível. A conclusão atual é apenas sobre a viabilidade do estudo: uma análise independente de nível de planeamento e adequação é realizável; uma réplica operacional integral da REN, da distribuição ou da estabilidade dinâmica não é realizável apenas com dados abertos.
+O projeto terminou a primeira auditoria metodológica e de dados e entra agora numa fatia vertical exploratória. Ainda não existe um resultado quantitativo sobre qual portefólio é preferível. Uma análise independente de planeamento e adequação é realizável; uma réplica operacional integral da REN, da distribuição ou da estabilidade dinâmica não é realizável apenas com dados abertos.
 
 ## Começar aqui
 
 - [Estado corrente](PROJECT_STATUS.md): decisões provisórias, conclusões, bloqueios e próximos passos.
-- [Plano de execução](docs/execution-plan.md): fases, dependências, entregáveis, gates e recursos.
+- [Plano de execução](docs/execution-plan.md): fatia vertical, três checkpoints, materialidade e sequência mínima.
 - [Desenho do projeto](docs/project-design.md): perguntas, âmbito, limites, viabilidade e governação.
 - [Contabilidade de custos](docs/cost-accounting.md): fronteira económica e prevenção de dupla contagem.
 - [Metodologia de modelação](docs/modelling-methodology.md): arquitetura, ferramentas, incerteza, adequação e validação.
@@ -16,6 +16,7 @@ O projeto encontra-se na fase de desenho metodológico e auditoria de dados. Ain
 - [Índice de dados](docs/data/index.md): estado das fontes, lacunas e ligações para as auditorias temáticas.
 - [Registo de decisões](docs/decision-log.md): decisões adotadas e alterações de posição.
 - [Auditoria de investigação de 2026-08-12](docs/archive/research-audit-2026-08-12.md): síntese da ronda de 100 agentes, incertezas reduzidas, lacunas duras e efeito do limite de concorrência.
+- [Benchmark de âmbito de 2026-08-12](docs/archive/scope-benchmark-2026-08-12.md): comparação com estudos suecos, NEA, RTE e o framework britânico para controlar underscope e scope creep.
 
 O documento monolítico anterior foi preservado como [snapshot histórico](docs/archive/project-memory-2026-08-10.md). Não deve ser atualizado nem citado como posição corrente quando exista um documento canónico mais recente. As auditorias datadas preservam a evidência de cada ronda de investigação; as conclusões correntes continuam a pertencer aos documentos canónicos e aos registos.
 
@@ -65,4 +66,4 @@ Os nomes acima descrevem o estado-alvo; os ficheiros de licença e citação só
 
 ## Âmbito de trabalho atual
 
-O default de trabalho é um primeiro estudo apenas elétrico do sistema continental PT–ES, com França representada como fronteira limitada, cronologia horária, vários anos meteorológicos e PyPSA-Eur/HiGHS. Açores e Madeira são tratados como sistemas separados. Isto é uma hipótese de trabalho, não uma decisão científica fechada.
+O default científico é um estudo elétrico continental PT–ES, com França como fronteira limitada e ilhas separadas. A implementação começa menor: 2–5 zonas, um ano horário, capacidades fixas, hidro/storage agregados e PyPSA/HiGHS. PyPSA-Eur pode fornecer receitas ou inputs seletivos, mas o workflow completo não é requisito de P0. Só depois do pipeline vertical funcionar entram investimento, três anos meteorológicos e adequação dos portefólios. Isto continua a ser uma hipótese de trabalho até C1.

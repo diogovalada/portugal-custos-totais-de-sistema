@@ -94,18 +94,20 @@ O [PECD v4.2](https://cds.climate.copernicus.eu/datasets/sis-energy-pecd?tab=ove
 
 Não existe um cap elétrico ibérico diretamente copiado da lei. ETS é UE-wide e PNEC/PNIEC são nacionais/economy-wide. O core deve usar uma restrição absoluta e explicitamente construída para emissões operacionais diretas da geração continental PT+ES, com reporting nacional separado. Imports, lifecycle, biomassa, CHP, pequenas unidades e créditos/remoções entram em variantes documentadas. Cap, preço ETS, shadow price e dano social são objetos diferentes.
 
-## Matriz mínima
+## Biblioteca de branches
 
-1. Policy 2030 com autorizações nucleares vigentes e trajetória PNEC/PNIEC realizável.
-2. Almaraz até 2030.
-3. Extensão espanhola +5/+10/+20 anos.
-4. Slow delivery de renováveis, storage, redes e eletrificação.
-5. Electro-industrial boom.
-6. Seca ibérica severa e plurianual.
-7. Bay of Biscay: atraso versus 5/8 GW ES–FR.
-8. Stress de gás e H2.
+Esta lista é um menu de incertezas, não a matriz obrigatória do primeiro experimento:
 
-Compound stresses prioritários:
+1. policy 2030 com autorizações nucleares vigentes e trajetória PNEC/PNIEC realizável;
+2. Almaraz até 2030;
+3. extensão espanhola +5/+10/+20 anos;
+4. slow delivery de renováveis, storage, redes e eletrificação;
+5. electro-industrial boom;
+6. seca ibérica severa e plurianual;
+7. Bay of Biscay: atraso versus 5/8 GW ES–FR;
+8. stress de gás e H2.
+
+P4 começa com uma referência, 2–3 contrafactuais focais e três weather years coerentes. Os restantes branches só são promovidos quando a sua amplitude plausível puder alterar o resultado. Compound stresses prioritários para fases posteriores:
 
 - nuclear closure + drought + high gas + Bay delay;
 - high demand + delayed storage/grid;

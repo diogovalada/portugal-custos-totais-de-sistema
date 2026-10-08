@@ -63,7 +63,7 @@ PT–ES e ES–FR continuam a ser representadas publicamente sobretudo por CNTC/
 O P3 pode comparar:
 
 1. transporte zonal CNTC;
-2. DC-KVL sintético com 10–30 clusters;
+2. DC-KVL sintético, começando por 2–5 zonas e aumentando a resolução apenas se congestionamento/localização forem materiais;
 3. topologias e deratings conservadores.
 
 Essa escada permite estudar congestão estrutural e valor agregado de reforços. Não permite alegar reprodução da RNT/RdT/RPT, causalidade por ramo, N-1 oficial ou congestão operacional nodal. `GAP-013` separa agora esta lacuna de transmissão das lacunas de distribuição e estabilidade.

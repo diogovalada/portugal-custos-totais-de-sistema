@@ -1,14 +1,14 @@
 # Contabilidade dos custos do sistema
 
 > Estado editorial: working  
-> Última verificação: 2026-08-11  
+> Última verificação: 2026-08-13
 > Âmbito: fronteira económica, função objetivo, ledgers e prevenção de dupla contagem  
 > Documento canónico para: significado de “total system cost” neste projeto  
 > Rever quando: mudar a fronteira, a métrica de bem-estar ou o tratamento de externalidades
 
 ## Princípio central
 
-**DECISION D-COST-001:** o resultado económico principal adota a perspetiva de planeador social e contabiliza recursos reais e danos externos. Preços, tarifas, impostos, subsídios, receitas de mercado, pagamentos de capacidade, pagamentos de reservas e rendas de congestionamento são normalmente transferências dentro da fronteira, não custos de recursos adicionais.
+**DECISIONS D-COST-001 e D-COST-002:** o headline principal contabiliza recursos reais na perspetiva do planeador PT+ES. Danos externos são mantidos numa conta satélite e só formam uma variante de custo social quando a cobertura e valorização forem explicitamente admitidas. Preços, tarifas, impostos, subsídios, receitas de mercado, pagamentos de capacidade, pagamentos de reservas e rendas de congestionamento são normalmente transferências dentro da fronteira, não custos de recursos adicionais.
 
 O estudo comparará o custo incremental ou contrafactual de fornecer o mesmo serviço com o mesmo padrão de fiabilidade e a mesma restrição de emissões. System LCOE e VALCOE podem ser resultados secundários, mas não são propriedades intrínsecas de uma tecnologia.
 
@@ -20,7 +20,7 @@ O estudo comparará o custo incremental ou contrafactual de fornecer o mesmo ser
 
 Os três ledgers podem ser apresentados lado a lado, mas não somados sem uma regra explícita.
 
-O ledger histórico de P2 usa 2022–2024 como default de trabalho e classifica cada linha como `observed`, `regulated_outturn`, `cash_or_settlement`, `allowed_revenue`, `projected` ou `modelled_estimate`. `physical_year`, `accrual_year`, `tariff_year` e `cash_year` são campos distintos. Um fecho agregado é viável; um ledger integral de custos privados efetivamente realizados por central não é publicamente observável.
+O ledger histórico começa por um ano e 8–12 categorias agregadas; 2022–2024 permanece o alvo de uma extensão satélite. Cada linha é classificada como `observed`, `regulated_outturn`, `cash_or_settlement`, `allowed_revenue`, `projected` ou `modelled_estimate`. `physical_year`, `accrual_year`, `tariff_year` e `cash_year` são campos distintos. Um fecho agregado é viável; um ledger integral de custos privados efetivamente realizados por central não é publicamente observável.
 
 ## Formulação económica mínima
 
@@ -33,7 +33,7 @@ NPV esperado = investimento descontado
              + custo operacional esperado por cenário
 ```
 
-O custo operacional inclui combustível e eficiência, VOM, arranque, no-load, ramping/cycling, recursos físicos de reservas, degradação e perdas de armazenamento, flexibilidade/desutilidade, ENS × VOLL, comércio externo aplicável e externalidades.
+O custo operacional do headline inclui combustível e eficiência, VOM, arranque, no-load, ramping/cycling, recursos físicos de reservas, degradação e perdas de armazenamento, flexibilidade/desutilidade, ENS × VOLL e comércio externo aplicável. Externalidades entram apenas na variante satélite identificada.
 
 Para procura elástica, o problema deve maximizar welfare ou minimizar recursos e danos externos menos a utilidade dos serviços energéticos.
 

@@ -10,7 +10,7 @@
 
 **FACT:** existe informação real relevante para redes reguladas e alguns projetos públicos/financiados. Não existe um registo público completo do custo final all-in por ativo, sobretudo na geração privada.
 
-Um ledger histórico agregado é, ainda assim, viável para 2022–2024 se cada entrada distinguir `observed`, `regulated_outturn`, `cash_or_settlement`, `allowed_revenue`, `projected` e `modelled_estimate`. Rede regulada pode ser tratada com boa evidência; combustível/CO2 e custos operacionais privados exigem proxies e intervalos. O gate G2 não deve exigir que todos os custos privados sejam cash outturn observado.
+Um ledger histórico agregado é, ainda assim, viável para 2022–2024 se cada entrada distinguir `observed`, `regulated_outturn`, `cash_or_settlement`, `allowed_revenue`, `projected` e `modelled_estimate`. Rede regulada pode ser tratada com boa evidência; combustível/CO2 e custos operacionais privados exigem proxies e intervalos. A execução começa por um ano e 8–12 categorias agregadas; a extensão a 2022–2024 é satélite e não bloqueia o backcast.
 
 Fontes principais:
 

@@ -47,7 +47,8 @@ Todos os valores abaixo são **ASSUMPTIONS** para harmonizar ao mesmo ano monet�
 - extensão de vida: cerca de 450/700/950 USD2020/kW como âncoras internacionais para casos de 10/20 anos; a extensão +5 exige custos, obras e disponibilidade específicos da unidade e não pode ser obtida por interpolação proporcional silenciosa;
 - new build overnight: 3 500/7 000 USD2020/kW, com stress FOAK ≥8 000;
 - construção: 6–8 anos em repetição bem-sucedida, 9–12 de referência e 13–18 em FOAK/stress;
-- taxa real comum: 3%/7%/10% no ledger de recursos; WACC e contratos no ledger financeiro.
+- taxa social real comum: ainda a adotar no ledger de recursos e testar como sensibilidade transversal;
+- financiamento/WACC nuclear: 4%/7%/10% como variantes no ledger financeiro, sem substituir a taxa social comum.
 
 Correlacionar CAPEX, atraso, custo financeiro e risco. Não esconder todo o risco no WACC nem contar overrun simultaneamente em CAPEX e financiamento.
 

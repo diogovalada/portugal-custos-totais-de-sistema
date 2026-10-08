@@ -48,9 +48,9 @@ Quando raw data não possam ser publicados, procurar acesso controlado/NDA/clean
 
 NDA ou ambiente seguro são fallback negocial, não direitos conferidos pela LADA nem condição a oferecer no primeiro pedido.
 
-## Proveniência mínima por fonte
+## Proveniência mínima por input preservado
 
-Cada fonte deve registar:
+Cada fonte promovida de descoberta para input de um resultado preservado deve registar:
 
 - proprietário, título e URL;
 - instante de aquisição e data de validade;
@@ -62,7 +62,7 @@ Cada fonte deve registar:
 - script e versão da transformação;
 - limitações jurídicas e técnicas.
 
-O registo inicial encontra-se em [`registers/sources.csv`](../../registers/sources.csv). Um URL citado num Markdown não substitui o registo nem o manifest do ficheiro efetivamente usado.
+O catálogo de descoberta encontra-se em [`registers/sources.csv`](../../registers/sources.csv). Um URL citado num Markdown não substitui o manifest do ficheiro efetivamente usado; uma fonte apenas investigada não precisa de manifest completo.
 
 ## Política de dados do repositório
 

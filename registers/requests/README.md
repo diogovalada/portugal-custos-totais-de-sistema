@@ -6,10 +6,6 @@ Guardar cada pedido numa pasta própria:
 YYYY-MM-DD-entidade-tema/
   request.md
   attachments/
-  response/
-  reuse-terms.md
-  outcome.md
 ```
 
-`outcome.md` deve indicar datas, âmbito concedido/recusado, fundamento, possibilidade de reutilização, restrições, necessidade de recurso e IDs das fontes/datasets resultantes. Não guardar dados pessoais, credenciais ou material confidencial neste repositório público.
-
+`request.md` contém entidade, canal, data, texto enviado e, à medida que existam, resposta, resultado por campo e condições de reutilização. Criar ficheiros separados para resposta, outcome ou termos apenas quando o volume ou complexidade jurídica o justifiquem. Não guardar dados pessoais, credenciais ou material confidencial neste repositório público.

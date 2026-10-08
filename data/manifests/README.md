@@ -1,6 +1,6 @@
 # Manifests de dados
 
-Cada aquisição deve ter um manifest com, pelo menos:
+Cada aquisição preservada e usada num resultado deve ter um manifest, gerado automaticamente tanto quanto possível, com pelo menos:
 
 ```yaml
 source_id:
@@ -20,3 +20,4 @@ transformation_commit:
 notes:
 ```
 
+Downloads descartáveis usados apenas para explorar uma API não exigem este formulário completo. Se forem promovidos a input, o manifest passa a ser obrigatório antes de qualquer resultado claim-bearing.

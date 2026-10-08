@@ -1,7 +1,7 @@
 # Metodologia de modelação, incerteza e validação
 
 > Estado editorial: working  
-> Última verificação factual: 2026-08-12  
+> Última verificação factual: 2026-08-13
 > Âmbito: arquitetura do modelo, ferramentas, computação, adequação e validação  
 > Documento canónico para: como o estudo será calculado e testado  
 > Rever quando: mudar o stack, a resolução ou o desenho experimental
@@ -14,18 +14,20 @@ A metodologia da NEA é pública, mas não existe um standard universal e codifi
 
 System LCOE é inadequado como métrica principal porque profile, balancing e grid costs dependem do benchmark, penetração, localização, flexibilidade e caminho de transição. A formulação preferida é:
 
-> whole-system resource cost and social cost under common reliability and emissions constraints
+> whole-system resource cost under common reliability and emissions constraints
+
+Externalidades são apresentadas em contas físicas e variantes de custo social explicitamente separadas; não entram silenciosamente no headline de recursos.
 
 Cada comparação terá uma ficha de contrafactual congelada: serviço/denominador, fronteira, trajetória brownfield, procura, fiabilidade, emissões, rede, clima, preços de recursos e efeitos incluídos. Custos de integração não são componentes universalmente aditivos nem atribuíveis a uma tecnologia sem esse benchmark.
 
 ## Arquitetura
 
-1. Modelo brownfield multi-período de expansão e despacho para Portugal e Espanha, com vintages, vida, reforma/refurbishment/repowering, lead/build time, emissões cumulativas, residual value e end effects.
+1. Modelo brownfield de expansão e despacho para Portugal e Espanha, começando por um ano-alvo com trajetória suficiente para vintages, reforma/refurbishment/repowering, lead/build time, residual value e end effects. Tecnologias divisíveis podem ter investimento contínuo; nuclear e outros ativos lumpy são blocos enumerados ou decisões binárias.
 2. França como nó limitado/endógeno ou condição de fronteira sujeita a stress, nunca como importação infinita; Marrocos se material.
-3. Pelo menos PT, ES e FR, preferencialmente 10–30 clusters ibéricos ou nós principais com DC load flow/transport documentado.
+3. Começar com 2–5 zonas PT–ES e França limitada. Aumentar para 4–8 ou mais clusters apenas se um teste demonstrar efeito material de congestionamento/localização; 10–30 nós não é requisito inicial.
 4. Cronologia horária completa no caso elétrico principal. Períodos representativos apenas se preservarem armazenamento sazonal, incluírem semanas críticas e forem validados em 8 760/8 784 horas.
 5. Vários anos coerentes de procura, vento, solar e hidro, preservando correlações PT–ES–FR e secas plurianuais.
-6. Depois de congelar portefólios, unit commitment/economic dispatch com rampas, mínimos, min-up/down, arranques, part-load, reservas, manutenção, avarias e forecast error. Usar 15/5 minutos nos períodos críticos necessários.
+6. Depois de congelar portefólios, usar unit commitment/economic dispatch em períodos críticos quando rampas, mínimos, arranques, reservas ou forecast error puderem alterar o resultado. Resolução de 15/5 minutos é validação localizada, não default anual.
 7. Adequação em módulo sequencial probabilístico, com clima, avarias, manutenção, interligações e limites energéticos de hidro/storage.
 8. Rede e segurança em módulos: perdas, congestionamento, redispatch, N-1 e screens de reativa, inércia e tensão. Estabilidade dinâmica nacional não é uma alegação do núcleo aberto.
 9. Externalidades e incidência financeira em satellite accounts ligados ao [ledger de custos](cost-accounting.md).
@@ -34,7 +36,7 @@ Os padrões oficiais são zonais: LOLE ≤1,46 h/ano em Portugal continental e �
 
 ## Tiers de fidelidade
 
-V0, V1 e V2 são rótulos de fidelidade, não uma ordem de execução concorrente com P1–P6:
+V0, V1 e V2 são rótulos de fidelidade, não uma ordem de execução concorrente com P0–P6:
 
 - **V0:** balanço nacional ou zonal agregado;
 - **V1:** sistema PT–ES com rede e principais nós/subestações representados;
@@ -44,25 +46,25 @@ Um módulo de estabilidade permanece separado e, sem dados e validação adicion
 
 ## Stack open source
 
-**ASSUMPTION A-STACK-001:** PyPSA + PyPSA-Eur, fixados a commits exatos, com HiGHS para o caminho reproduzível principal.
+**ASSUMPTION A-STACK-001:** PyPSA + HiGHS, fixados a versões exatas, constituem o caminho reproduzível principal. PyPSA-Eur é upstream opcional para scripts, convenções e inputs selecionados; P0 não exige instalar nem executar o workflow europeu completo.
 
-Snapshot em 2026-08-10: PyPSA 1.2.2 e PyPSA-Eur 2026.02.0. Estes números não são pins ainda; o run manifest deve guardar o commit e lockfile efetivamente usados.
+Snapshot em 2026-08-10: PyPSA 1.2.2 e PyPSA-Eur 2026.02.0. Estes números não são pins ainda; o run manifest deve guardar versões/commits e lockfile efetivamente usados, incluindo PyPSA-Eur apenas quando alguma parte sua entrar no run.
 
 Fontes: [PyPSA](https://github.com/PyPSA/PyPSA), [PyPSA-Eur](https://github.com/PyPSA/pypsa-eur), [documentação](https://pypsa-eur.readthedocs.io/en/stable/index.html), [licenças upstream](https://pypsa-eur.readthedocs.io/en/latest/licenses/) e [otimização](https://docs.pypsa.org/latest/user-guide/optimization/overview/).
 
 O PyPSA é o framework, não um cadastro português. O PyPSA-Eur usa `powerplantmatching` para coordenadas de muitas centrais convencionais e atribui-as espacialmente a buses/regiões. Estas coordenadas e o bus inferido são úteis para modelação, mas não equivalem ao crosswalk oficial grupo–subestação–terminal. O workflow [documenta a atribuição espacial e nearest-neighbour](https://github.com/PyPSA/pypsa-eur/blob/master/scripts/build_powerplants.py).
 
-### Suite de validação
+### Validação escalonada
 
-`A-MODEL2-001` deixa de significar um único segundo modelo integral. A arquitetura de trabalho tem três papéis:
+O caminho mínimo tem apenas:
 
-1. **reference implementation Julia/JuMP + HiGHS**, com SCIP em fixtures MILP reduzidos, para balanços, storage/hidro simples, linha congestionada, carbono, expansão contínua e UC pequeno;
-2. **GenX**, sujeito a piloto P3, para intercomparar expansão, UC, reservas, storage e carbono em 1–3 zonas;
-3. **Antares-Simulator**, sujeito a piloto, para Monte Carlo sequencial de adequação de portefólios fixos PT–ES(+FR/MA).
+1. **fixtures analíticas ou pequenos problemas independentes**, para balanços, storage/hidro, linha congestionada, carbono, investimento discreto e load shedding;
+2. **PyPSA + HiGHS**, como modelo de planeamento principal;
+3. **um simulador de adequação**, próprio e pequeno ou Antares-Simulator, apenas para portefólios finalistas.
 
-Todos consomem tabelas canónicas neutras através de adaptadores independentes. Nenhum lê objetos, NetCDF ou matrizes internas produzidas pelo PyPSA. O conversor PyPSA→Antares pode testar tradução, mas não conta como validação estrutural principal.
+GenX não é requisito. Só recebe um adaptador/piloto se um caso reduzido revelar discrepância estrutural, se a escolha do mix for sensível à formulação ou se uma revisão externa o exigir. Uma implementação Julia/JuMP completa também não é necessária quando fixtures resolvidas independentemente já testam as identidades.
 
-Se só houver recursos para um pacote externo, Antares é o mais complementar; se a pergunta prioritária for o mix de capacidade, GenX tem precedência. POSY2 só volta à shortlist se a NEA disponibilizar código, licença e caso reproduzível. Dispa-SET fica condicionado por GAMS; SpineOpt é reserva estratégica; Calliope/Temoa/OSeMOSYS servem apenas cross-checks mais agregados.
+Inputs preservados usam tabelas canónicas neutras, evitando que um modelo secundário dependa de objetos internos do PyPSA. Construir adaptadores apenas quando o respetivo modelo tiver passado o critério de promoção.
 
 HiGHS continua a ser o caminho principal reproduzível de `A-STACK-001`. Um solver comercial pode ser usado em MILP/UC pesado, desde que o manifest registe produto e versão. Os casos principais devem ter reprodução no caminho aberto; se esta só for viável com scope reduzido, a diferença é declarada e a alegação de reprodutibilidade é reduzida em conformidade.
 
@@ -83,7 +85,7 @@ Um portátil basta para V0 e screening zonal. Para o principal, RAM, CPU, solver
 
 UC anual exato é o risco maior. O baseline é UC horário em janelas 48/96/168 h com overlap e estados/valores terminais validados; 15/5 minutos significam primeiro commitment congelado e redispatch/reservas nos períodos críticos. Adequação usa simulador rápido para todas as histórias e UC/ED detalhado apenas numa amostra estratificada dos eventos críticos.
 
-Configuração inicial: 10–30 clusters, 8 760 horas, investimento contínuo, despacho linear, reservatórios/bombagem/baterias explícitos, 3–5 weather years separados e UC em stress weeks/rolling horizon.
+Configuração P0: 2–5 zonas, 8 760 horas, capacidades fixas, despacho linear e hidro/storage agregados, num portátil. Primeira comparação P4: um ano-alvo, investimento contínuo apenas para tecnologias divisíveis, nuclear discreto, três weather years coerentes e UC apenas se um stress test mostrar materialidade.
 
 ## Incerteza
 
@@ -92,24 +94,23 @@ Configuração inicial: 10–30 clusters, 8 760 horas, investimento contínuo, d
 | Classe | Exemplos | Tratamento |
 |---|---|---|
 | Aleatória | clima, avarias, reparação, linhas | Monte Carlo sequencial |
-| Paramétrica | CAPEX, eficiência, combustível, CO2, procura | sensibilidade e amostragem global |
+| Paramétrica | CAPEX, eficiência, combustível, CO2, procura | sensibilidades primeiro; amostragem global apenas se material |
 | Profunda | nuclear, H2, política, build rates | narrativas sem probabilidades falsas |
-| Estrutural | rede/copperplate, foresight, UC, storage | ensemble de formulações/modelos |
-| Solução | portefólios quase ótimos | MGA a +1%, +3% e +5% |
+| Estrutural | rede/copperplate, foresight, UC, storage | testes de resolução/formulação promovidos por materialidade |
+| Solução | portefólios quase ótimos | um slack MGA inicial quando a não-unicidade for relevante |
 
 Desenho recomendado:
 
-1. pré-registar pergunta, fronteira, custos, métricas, cenários e tolerâncias;
-2. usar 6–10 narrativas coerentes, evitando full factorial;
-3. amostrar parâmetros correlacionados dentro de cada narrativa;
-4. testar portefólios out-of-sample em clima e avarias;
-5. comparar determinístico, estocástico risk-neutral, CVaR e minimax regret quando viável;
-6. mostrar value of stochastic solution, price of robustness, regret e alternativas quase ótimas.
+1. congelar em C1 pergunta, fronteira, custos, métricas e contrafactuais claim-bearing;
+2. começar com referência, 2–3 contrafactuais e três weather years coerentes;
+3. testar os finalistas out-of-sample em clima e avarias;
+4. acrescentar apenas a sensibilidade cuja amplitude plausível seja comparável à diferença entre portefólios;
+5. usar MGA, stochastic expansion, CVaR ou minimax regret apenas quando uma pergunta concreta justificar cada método.
 
 ## Clima e seca
 
 - [PECD v4.2](https://cds.climate.copernicus.eu/datasets/sis-energy-pecd?tab=overview), CC BY 4.0, como backbone futuro; ERA5/ERA5-Land como baseline físico histórico e observações nacionais para calibração;
-- objetivo científico de pelo menos 30–40 anos históricos coerentes PT–ES–FR e todas as cadeias futuras retidas, não apenas 3–5 anos de screening;
+- usar três anos coerentes no primeiro screening; expandir para uma série histórica longa e, quando relevante, cadeias futuras nos testes de adequação dos portefólios fixos, até obter precisão suficiente — não em todos os runs de expansão;
 - procura, vento, PV, hidro e derating devem usar o mesmo ano/calendário;
 - preservar sequências plurianuais e carry-over de reservatórios;
 - perfect foresight funciona como lower bound, com sensibilidade rolling/limited foresight;
@@ -130,6 +131,8 @@ Depois de congelar cada portefólio:
 - intervalos de confiança e teste de convergência;
 - bootstrap por climate-year/outage history, não por horas independentes;
 - se não houver ENS, reportar upper bound estatístico, nunca “risco zero”.
+
+P4 deve incluir uma aproximação conservadora de capacidade firme/ELCC. Se P5 revelar capacidade ou custo corretivo material para cumprir o padrão zonal, o resultado regressa a P4 e é reotimizado ou reportado como condicionado. Adequação não é apenas um teste pass/fail posterior ao cálculo de custos.
 
 Meta inicial de convergência: half-width do IC95 ≤10% relativo para LOLE/EENS não nulos, sujeita a revisão. Métricas: LOLE, EENS, LOLP, probabilidade anual, quantis ENS, shortfall máximo, duração dos eventos, dependência de importação em scarcity e decomposição por constraint.
 
@@ -158,8 +161,8 @@ Validação matemática/software:
 - reprodução independente avaliada por métrica com tolerâncias absolutas e/ou relativas fixadas em `A-REPRO-TOL-001` antes da tentativa;
 - declarar não-unicidade quando o custo é estável mas o mix varia.
 
-A intercomparação deve avançar por degraus: one-node, storage/hydro, PT–ES, UC, expansão, carbono e adequação. Um difference register atribuirá discrepâncias a dados, formulação, solver ou incerteza estrutural.
+A validação avança por degraus: one-node, storage/hydro, PT–ES, expansão, carbono e adequação. Um difference register só é criado quando existir uma discrepância material a explicar.
 
 ## Manifest de execução
 
-Cada run deve registar run ID, timestamp, Git commit/dirty state, hash de configuração e inputs, versões do modelo/dependências/solver, random seeds, threads, máquina, cenário, pesos, parent run, status, gap, resíduos, runtime, logs e checksums dos outputs.
+Runs preservados geram automaticamente, tanto quanto possível, run ID, timestamp, Git commit/dirty state, hash de configuração e inputs, versões do modelo/dependências/solver, seeds, threads, máquina, cenário, status, gap/resíduos, runtime, logs e checksums. Experiências descartáveis de P0 precisam apenas do mínimo para serem repetidas durante a exploração; manifests manuais extensos não são aceitáveis como rotina.
